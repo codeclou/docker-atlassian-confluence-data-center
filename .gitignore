@@ -1,0 +1,4 @@
+*.iml
+.idea
+confluencenode/confluence-shared-home
+confluence-shared-home
