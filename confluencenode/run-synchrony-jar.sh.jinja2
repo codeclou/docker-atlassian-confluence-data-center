@@ -3,6 +3,7 @@
 # See 'Configuring Synchrony for Data Center'
 # https://confluence.atlassian.com/doc/configuring-synchrony-for-data-center-858772125.html
 
+# START IN BACKGROUND
 java \
   -Xss2048k \
   -Xmx2g \
@@ -22,9 +23,9 @@ java \
   -Dsynchrony.service.url={{ SYNCHRONY_URL }} \
   -Djwt.private.key={{ JWT_PRIVATE_KEY }} \
   -Djwt.public.key={{ JWT_PUBLIC_KEY }} \
-  -Dsynchrony.database.url={{ YOUR_DATABASE_URL }} \
-  -Dsynchrony.database.username={{ DB_USERNAME }} \
-  -Dsynchrony.database.password={{ DB_PASSWORD }} \
+  -Dsynchrony.database.url={{ CONFLUENCE_DATABASE_URL }} \
+  -Dsynchrony.database.username={{ CONFLUENCE_DATABASE_USERNAME }} \
+  -Dsynchrony.database.password={{ CONFLUENCE_DATABASE_PASSWORD }} \
   -Dip.whitelist=127.0.0.1,localhost \
   synchrony.core \
-  sql
+  sql &

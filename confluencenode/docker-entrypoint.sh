@@ -4,9 +4,8 @@ set -e
 
 umask u+rxw,g+rwx,o-rwx
 
-#
-# GENERATE CLUSTER CONF
-#
-env | j2  --format=env /work-private/cluster.properties.jinja2 > /jira-home/cluster.properties
+env | j2  --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
+
+bash /work-private/run-synchrony-jar.sh
 
 exec "$@"

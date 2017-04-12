@@ -19,10 +19,6 @@ set -e
 #    check: https://hub.docker.com/r/codeclou/docker-atlassian-confluence-data-center/tags/
 CONFLUENCE_VERSION="6.1.1"
 
-# MULTICAST
-#    Multicast is activated by default
-MULTICAST="true"
-
 ####################################################################################
 #
 # COLORS
