@@ -107,6 +107,22 @@ docker run \
     -v $(pwd):/work/ \
     -p 8090:8090 \
     -p 8091:8091 \
+    -e NODE_NUMBER=1 \
     -e CONFLUENCE_DATA_CENTER_LICENSE="$CONFLUENCE_DATA_CENTER_LICENSE" \
     confluencenode-init
 ```
+
+
+It should boot up, and hang a little here, which is fine. Just wait.
+
+```
+2017-04-13 18:18:01,569 INFO [localhost-startStop-1] [confluence.cluster.hazelcast.HazelcastClusterManager] startCluster Starting the cluster.
+2017-04-13 18:18:05,495 INFO [localhost-startStop-1] [confluence.cluster.hazelcast.HazelcastClusterManager] startCluster Confluence cluster node identifier is [d66c1ac7]
+2017-04-13 18:18:05,495 INFO [localhost-startStop-1] [confluence.cluster.hazelcast.HazelcastClusterManager] startCluster Confluence cluster node name is [node1]
+```
+
+Then when going to [http://localhost:8090/plugins/servlet/cluster-monitoring](http://localhost:8090/plugins/servlet/cluster-monitoring) it should display this
+with correct node name:
+
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/13.png" /></p>

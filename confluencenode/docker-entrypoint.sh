@@ -32,6 +32,14 @@ export MULTICAST_GROUP=$MULTICAST_CLUSTER_ADDRESS
 export SERVER_IP=$IP_ADDRESS
 export SYNCHRONY_URL="http://confluence-cluster-lb:8090/synchrony"
 
+#
+# SET NODE ID IN SETENV.SH
+#
+NODE_ID="node${NODE_NUMBER}"
+sed -i -e "s/export CATALINA_OPTS/#replaced/g" /confluence/atlassian-confluence-latest/bin/setenv.sh
+echo -e "CATALINA_OPTS=\"-Dconfluence.cluster.node.name=${NODE_ID} \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
+echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
+
 
 if [ "$INIT" == "false" ]
 then
