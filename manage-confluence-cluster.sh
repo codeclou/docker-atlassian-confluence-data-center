@@ -95,7 +95,7 @@ function start_instance_loadbalancer {
         --net=confluence-cluster \
         --net-alias=confluence-cluster-lb \
         --env NODES=${1} \
-        -p 9980:9980 \
+        -p 9981:9981 \
         -d codeclou/docker-atlassian-confluence-data-center:loadbalancer-${CONFLUENCE_VERSION}
 }
 
