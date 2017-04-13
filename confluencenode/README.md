@@ -86,3 +86,16 @@ bzip2 confluence-db-dump.sql
 
 Now we have the files we need and can terminate the running confluence-node-init instance.
 
+
+```bash
+docker rm confluence-node-init
+docker run \
+    -i -t \
+    --name=confluence-node-init \
+    --net=confluence-cluster \
+    --net-alias=confluence-node-init \
+    -v $(pwd):/work/ \
+    -p 8090:8090 \
+    -e CONFLUENCE_DATA_CENTER_LICENSE=$CONFLUENCE_DATA_CENTER_LICENSE \
+    confluencenode-init bash
+```

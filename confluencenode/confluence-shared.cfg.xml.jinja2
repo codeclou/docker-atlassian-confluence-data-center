@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<confluence-configuration>
+    <setupStep>complete</setupStep>
+    <setupType>cluster</setupType>
+    <buildNumber>7109</buildNumber>
+    <properties>
+        <property name="atlassian.license.message">{{ CONFLUENCE_LICENSE }}</property>
+        <property name="confluence.cluster">true</property>
+        <property name="hibernate.setup">true</property>
+        <property name="jwt.private.key">{{ JWT_PRIVATE_KEY }}</property>
+        <property name="jwt.public.key">{{ JWT_PUBLIC_KEY }}</property>
+        <property name="lucene.index.dir">${localHome}/index</property>
+    </properties>
+</confluence-configuration>

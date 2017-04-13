@@ -11,6 +11,12 @@ http://confluence-cluster-lb:9981/
 
 :bangbang: **WORK IN PROGRESS** :bangbang: 
 
+
+at best put in `.bashrc`
+```bash
+export CONFLUENCE_DATA_CENTER_LICENSE="AAABRg0ODAoPeNp1UMtOg0AU3c9XTOJGFzQFitUmJJZHTBOgRtCF..."
+```
+
 -----
 
 &nbsp;

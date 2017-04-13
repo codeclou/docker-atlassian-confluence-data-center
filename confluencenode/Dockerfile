@@ -2,6 +2,13 @@ FROM codeclou/docker-oracle-jdk:8u121
 
 ENV CONFLUENCE_VERSION 6.1.1
 
+
+COPY run-synchrony-jar.sh.jinja2 /work-private/run-synchrony-jar.sh.jinja2
+COPY confluence.cfg.xml.jinja2 /work-private/confluence.cfg.xml.jinja2
+COPY confluence-shared.cfg.xml.jinja2 /work-private/confluence-shared.cfg.xml.jinja2
+COPY confluence-db-dump.sql /work-private/confluence-db-dump.sql
+COPY confluence-home.tar.bz2 /work-private/confluence-home.tar.bz2
+COPY confluence-shared-home.tar.bz2 /work-private/confluence-shared-home.tar.bz2
 COPY docker-entrypoint.sh /work-private/docker-entrypoint.sh
 RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     addgroup -g 10777 worker && \
@@ -34,21 +41,16 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     echo -e "\nconfluence.home=/confluence-home/" >> /confluence/atlassian-confluence-latest/confluence/WEB-INF/classes/confluence-init.properties
 
 #
-# CONF
-#
-COPY run-synchrony-jar.sh.jinja2 /work-private/run-synchrony-jar.sh.jinja2
-COPY run-synchrony-jar.sh.jinja2 /work-private/run-synchrony-jar.sh.jinja2
-
-#
 # WORKDIR
 #
 WORKDIR /work
-# Confluence HTTP Port
+# Confluence and Synchrony HTTP Port
 EXPOSE 8090
-# Confluence Cluster Sync Port
-EXPOSE 40001
-# Confluence Cluster EHCache Multicast Port - see: https://forums.rancher.com/t/solved-problems-multicast-ehcache/1507/7
-EXPOSE 4446
+EXPOSE 8091
+# Cluster Ports
+EXPOSE 5801
+EXPOSE 5701
+EXPOSE 25500
 
 #
 # RUN
@@ -56,6 +58,7 @@ EXPOSE 4446
 USER worker
 ENV NODE_NUMBER 1
 ENV INIT "false"
+ENV CONFLUENCE_LICENSE "define-me"
 VOLUME ["/work"]
 VOLUME ["/confluence-shared-home"]
 ENTRYPOINT ["/work-private/docker-entrypoint.sh"]
