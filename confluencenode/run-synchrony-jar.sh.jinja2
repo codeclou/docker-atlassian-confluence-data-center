@@ -20,12 +20,12 @@ java \
   -Dsynchrony.cluster.bind={{ SERVER_IP }} \
   -Dsynchrony.bind={{ SERVER_IP }} \
   -Dcluster.interfaces={{ SERVER_IP }} \
-  -Dsynchrony.service.url={{ SYNCHRONY_URL }} \
-  -Djwt.private.key={{ JWT_PRIVATE_KEY }} \
-  -Djwt.public.key={{ JWT_PUBLIC_KEY }} \
-  -Dsynchrony.database.url=jdbc:postgresql://{{ DATABASE_HOST }}:5432/{{ DATABASE_DB }} \
-  -Dsynchrony.database.username={{ DATABASE_USERNAME }} \
-  -Dsynchrony.database.password={{ DATABASE_PASSWORD }} \
+  -Dsynchrony.service.url="{{ SYNCHRONY_URL }}" \
+  -Djwt.private.key="{{ JWT_PRIVATE_KEY }}" \
+  -Djwt.public.key="{{ JWT_PUBLIC_KEY }}" \
+  -Dsynchrony.database.url="jdbc:postgresql://{{ DATABASE_HOST }}:5432/{{ DATABASE_DB }}" \
+  -Dsynchrony.database.username={{ DATABASE_USER }} \
+  -Dsynchrony.database.password={{ DATABASE_PASS }} \
   -Dip.whitelist=127.0.0.1,localhost \
   synchrony.core \
   sql &

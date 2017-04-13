@@ -88,6 +88,16 @@ Now we have the files we need and can terminate the running confluence-node-init
 
 
 ```bash
+CONFLUENCE_DATA_CENTER_LICENSE=$(cat <<EOF
+AAABRg0ODAoPeNp1UMtOg0AU3c9XTOJGFzQFitUmJJZHTBOgRtCFcXNLL+0kdEruDNX+mzt/zAFqq
+ibuZs65Oa+LYtvyeUPcdvl4MpvczByXh1HBnbE9ZeVeViMotTigr6lF9tBSuQWFEWj0uxNrPLFsl
+yWiRKkwfm8EHX+QXkeGe6mNSJyCqH3QNSglQN5tjKDEN6jXeiRRsxzpgLSI/CBwXcu5Th3Le3oJr
+DyLiiGJEYYQpUYa0uTtSpUkGi32ckCMhaElyPKfLL1O1u5WSMvqSSEp37IHNNdAnXQFtcLvRiZOs
+ojyOLOSW2/qTj2XmY//C1jSBqRQ0McIkOQWaM3v6fPjVI+FhD37d7be9+RUHBvMYId+uEzT+DFcz
+BNWD9SzidlpOyzCc2Eza1WbCUvkl90yfJjm6nXG4wPUbe/Izs9hoS9u2aUjMCwCFGb8Af+D10y1V
++BA6P6BDXTux9GsAhRPk5+n7QIs1mtk7ANVBBzGT/r0cQ==X02g8
+EOF)
+
 docker rm confluence-node-init
 docker run \
     -i -t \
@@ -96,6 +106,7 @@ docker run \
     --net-alias=confluence-node-init \
     -v $(pwd):/work/ \
     -p 8090:8090 \
-    -e CONFLUENCE_DATA_CENTER_LICENSE=$CONFLUENCE_DATA_CENTER_LICENSE \
-    confluencenode-init bash
+    -p 8091:8091 \
+    -e CONFLUENCE_DATA_CENTER_LICENSE="$CONFLUENCE_DATA_CENTER_LICENSE" \
+    confluencenode-init
 ```

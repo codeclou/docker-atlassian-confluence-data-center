@@ -72,6 +72,7 @@ then
     #
     # START SYNCHRONY
     #
+    echo ">> docker-entrypoint: starting synchrony"
     env | j2  --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
     bash /work-private/run-synchrony-jar.sh
 fi
