@@ -27,7 +27,7 @@ java \
 -Djwt.public.key="{{ JWT_PUBLIC_KEY }}" \
 -Dsynchrony.database.url="jdbc:postgresql://{{ DATABASE_HOST }}:5432/{{ DATABASE_DB }}" \
 -Dsynchrony.database.username={{ DATABASE_USER }} \
--Dsynchrony.database.password={{ DATABASE_PASS }} \
+-Dsynchrony.database.prd={{ DATABASE_PASS }} \
 -Dip.whitelist=127.0.0.1,localhost \
 synchrony.core \
 sql &
