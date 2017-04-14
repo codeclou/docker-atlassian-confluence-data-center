@@ -2,16 +2,7 @@ FROM codeclou/docker-oracle-jdk:8u121
 
 ENV CONFLUENCE_VERSION 6.1.1
 
-
-COPY run-synchrony-jar.sh.jinja2 /work-private/run-synchrony-jar.sh.jinja2
-COPY confluence.cfg.xml.jinja2 /work-private/confluence.cfg.xml.jinja2
-COPY confluence-shared.cfg.xml.jinja2 /work-private/confluence-shared.cfg.xml.jinja2
-COPY confluence-db-dump.sql /work-private/confluence-db-dump.sql
-COPY confluence-home.tar.bz2 /work-private/confluence-home.tar.bz2
-COPY confluence-shared-home.tar.bz2 /work-private/confluence-shared-home.tar.bz2
-COPY docker-entrypoint.sh /work-private/docker-entrypoint.sh
-RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
-    addgroup -g 10777 worker && \
+RUN addgroup -g 10777 worker && \
     adduser -h /work -H -D -G worker -u 10777 worker && \
     mkdir -p /work && \
     mkdir -p /work-private && \
@@ -29,8 +20,6 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/confluence.tar.gz \
          https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
-# FIXME: ONCE STABLE
-#         http://192.168.178.66/static/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
     tar zxf /opt/confluence.tar.gz -C /confluence && \
     cd /confluence && \
     ln -s atlassian-confluence-${CONFLUENCE_VERSION} atlassian-confluence-latest && \
@@ -39,6 +28,21 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     chown -R worker:worker /confluence-home/ && \
     chown -R worker:worker /confluence-shared-home && \
     echo -e "\nconfluence.home=/confluence-home/" >> /confluence/atlassian-confluence-latest/confluence/WEB-INF/classes/confluence-init.properties
+
+
+#
+# FILES
+#
+COPY run-synchrony-jar.sh.jinja2 /work-private/run-synchrony-jar.sh.jinja2
+COPY confluence.cfg.xml.jinja2 /work-private/confluence.cfg.xml.jinja2
+COPY confluence-shared.cfg.xml.jinja2 /work-private/confluence-shared.cfg.xml.jinja2
+COPY confluence-db-dump.sql /work-private/confluence-db-dump.sql
+COPY confluence-home.tar.bz2 /work-private/confluence-home.tar.bz2
+COPY confluence-shared-home.tar.bz2 /work-private/confluence-shared-home.tar.bz2
+COPY docker-entrypoint.sh /work-private/docker-entrypoint.sh
+RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
+    chown -R worker:worker /work-private/
+
 
 #
 # WORKDIR
