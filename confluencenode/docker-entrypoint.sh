@@ -73,8 +73,8 @@ then
     else
         echo ">> docker-entrypoint: initializing db"
         cd /work-private/
-        export PGPASSWORD="confluence"
-        psql -h confluence-cluster-db -U confluence -d confluence < /work-private/confluence-db-dump.sql
+        export PGPASSWORD=${DATABASE_PASS}
+        psql -h ${DATABASE_HOST} -U ${DATABASE_USER} -d ${DATABASE_DB} < /work-private/confluence-db-dump.sql
         touch /confluence-shared-home/docker-db-is-already-initialized.lock
     fi
 
