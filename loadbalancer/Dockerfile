@@ -10,7 +10,7 @@ RUN apk add --no-cache \
             apache2-utils \
             python \
             py-pip && \
-            pip install shinto-cli
+            pip install jinja2-cli
 
 #
 # ERROR LOG, USER

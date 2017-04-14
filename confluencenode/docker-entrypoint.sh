@@ -42,6 +42,30 @@ echo -e "CATALINA_OPTS=\"-Dsynchrony.service.url=http://confluence-cluster-611-l
 echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 
 
+#
+# WRITE ENV VARIABLES JSON FILE
+#
+echo -e "{\n" > /work-private/env-variables.json
+# ----
+echo -e "  \"JWT_PRIVATE_KEY\": \"${JWT_PRIVATE_KEY}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"JWT_PUBLIC_KEY\": \"${JWT_PUBLIC_KEY}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"MULTICAST_CLUSTER_ADDRESS\": \"${MULTICAST_CLUSTER_ADDRESS}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"DATABASE_HOST\": \"${DATABASE_HOST}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"DATABASE_USER\": \"${DATABASE_USER}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"DATABASE_PASS\": \"${DATABASE_PASS}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"DATABASE_DB\": \"${DATABASE_DB}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"PATH_TO_SYNCHRONY_STANDALONE_JAR\": \"${PATH_TO_SYNCHRONY_STANDALONE_JAR}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"JDBC_DRIVER_PATH\": \"${JDBC_DRIVER_PATH}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"SYNCHRONY_PORT\": \"${SYNCHRONY_PORT}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"CLUSTER_LISTEN_PORT\": \"${CLUSTER_LISTEN_PORT}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"CLUSTER_BASE_PORT\": \"${CLUSTER_BASE_PORT}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"MULTICAST_GROUP\": \"${MULTICAST_GROUP}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"SERVER_IP\": \"${SERVER_IP}\",  \n" >> /work-private/env-variables.json
+echo -e "  \"SYNCHRONY_URL\": \"${SYNCHRONY_URL}\",  \n" >> /work-private/env-variables.json
+# ----
+echo -e "  \"foo\": \"bar\"\n}" >> /work-private/env-variables.json
+
+
 if [ "$INIT" == "false" ]
 then
     #
@@ -50,7 +74,7 @@ then
     echo ">> docker-entrypoint: extracting - pre-initialized confluence-home"
     rm -rf /confluence-home/*
     tar xfjv /work-private/confluence-home.tar.bz2 --strip 1 -C /confluence-home
-    env | iconv -f utf-8 -t ascii | j2  --format=env /work-private/confluence.cfg.xml.jinja2 > /confluence-home/confluence.cfg.xml
+    jinja2 /work-private/confluence.cfg.xml.jinja2 /work-private/env-variables.json > /confluence-home/confluence.cfg.xml
 
     #
     # INIT CONFLUENCE SHARED HOME
@@ -61,7 +85,7 @@ then
     else
         echo ">> docker-entrypoint: extracting - pre-initialized confluence-shared-home"
         tar xfjv /work-private/confluence-shared-home.tar.bz2 --strip 1 -C /confluence-shared-home
-        env | iconv -f utf-8 -t ascii | j2  --format=env /work-private/confluence-shared.cfg.xml.jinja2 > /confluence-shared-home/confluence.cfg.xml
+        jinja2 /work-private/confluence-shared.cfg.xml.jinja2 /work-private/env-variables.json > /confluence-shared-home/confluence.cfg.xml
     fi
 
     #
@@ -82,7 +106,7 @@ then
     # START SYNCHRONY
     #
     echo ">> docker-entrypoint: starting synchrony"
-    env | iconv -f utf-8 -t ascii | j2  --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
+    jinja2 /work-private/run-synchrony-jar.sh.jinja2 /work-private/env-variables.json > /work-private/run-synchrony-jar.sh
     bash /work-private/run-synchrony-jar.sh
 fi
 

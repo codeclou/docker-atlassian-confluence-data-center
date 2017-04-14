@@ -18,7 +18,7 @@ RUN addgroup -g 10777 worker && \
             postgresql-client \
             python \
             py-pip && \
-            pip install shinto-cli && \
+            pip install jinja2-cli && \
     curl -jkSL -o /opt/confluence.tar.gz \
          https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
     tar zxf /opt/confluence.tar.gz -C /confluence && \
