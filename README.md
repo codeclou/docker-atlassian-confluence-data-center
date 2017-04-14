@@ -7,7 +7,10 @@ Always multicast!
 Since the Setup is [rather complex](https://confluence.atlassian.com/doc/installing-confluence-data-center-203603.html), we will start a preconfigured cluster,
 that has already been setup. Meaning a preconfigured confluence-home and database-dump are used.
 
-http://confluence-cluster-lb:9981/
+http://confluence-cluster-611-lb:50611/
+
+port is versioned as well as network and container names!
+
 
 :bangbang: **WORK IN PROGRESS** :bangbang: 
 

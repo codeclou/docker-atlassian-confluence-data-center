@@ -28,9 +28,9 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
             py-pip && \
             pip install shinto-cli && \
     curl -jkSL -o /opt/confluence.tar.gz \
-#         https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
+         https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
 # FIXME: ONCE STABLE
-         http://192.168.178.66/static/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
+#         http://192.168.178.66/static/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz  && \
     tar zxf /opt/confluence.tar.gz -C /confluence && \
     cd /confluence && \
     ln -s atlassian-confluence-${CONFLUENCE_VERSION} atlassian-confluence-latest && \

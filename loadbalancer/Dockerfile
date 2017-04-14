@@ -48,7 +48,7 @@ COPY loadbalancer-virtual-host.conf.jinja2 /work-private
 # WORKDIR
 #
 WORKDIR /work
-EXPOSE 9981
+EXPOSE 50611
 
 #
 # RUN
