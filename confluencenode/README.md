@@ -37,29 +37,29 @@ docker run \
 /confluence/atlassian-confluence-latest/bin/catalina.sh run
 ```
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/01.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/01.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/02.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/02.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/03.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/03.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/04.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/04.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/05.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/05.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/06.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/06.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/07.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/07.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/08.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/08.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/09.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/09.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/10.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/10.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/11.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/11.png" /></p>
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/12.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/12.png" /></p>
 
 
 Now shutdown Confluence by pressing CTRL+C and give it time to shutdown gracefully.
@@ -125,4 +125,4 @@ Then when going to [http://localhost:8090/plugins/servlet/cluster-monitoring](ht
 with correct node name:
 
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/img/init/13.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/13.png" /></p>
