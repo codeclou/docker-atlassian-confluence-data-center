@@ -50,7 +50,7 @@ then
     echo ">> docker-entrypoint: extracting - pre-initialized confluence-home"
     rm -rf /confluence-home/*
     tar xfjv /work-private/confluence-home.tar.bz2 --strip 1 -C /confluence-home
-    env | iconv -f utf-8 -t us-ascii//TRANSLIT | j2  --format=env /work-private/confluence.cfg.xml.jinja2 > /confluence-home/confluence.cfg.xml
+    env | iconv -f utf-8 -t ascii | j2  --format=env /work-private/confluence.cfg.xml.jinja2 > /confluence-home/confluence.cfg.xml
 
     #
     # INIT CONFLUENCE SHARED HOME
@@ -61,7 +61,7 @@ then
     else
         echo ">> docker-entrypoint: extracting - pre-initialized confluence-shared-home"
         tar xfjv /work-private/confluence-shared-home.tar.bz2 --strip 1 -C /confluence-shared-home
-        env | iconv -f utf-8 -t us-ascii//TRANSLIT | j2  --format=env /work-private/confluence-shared.cfg.xml.jinja2 > /confluence-shared-home/confluence.cfg.xml
+        env | iconv -f utf-8 -t ascii | j2  --format=env /work-private/confluence-shared.cfg.xml.jinja2 > /confluence-shared-home/confluence.cfg.xml
     fi
 
     #
@@ -82,7 +82,7 @@ then
     # START SYNCHRONY
     #
     echo ">> docker-entrypoint: starting synchrony"
-    env | iconv -f utf-8 -t us-ascii//TRANSLIT | j2  --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
+    env | iconv -f utf-8 -t ascii | j2  --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
     bash /work-private/run-synchrony-jar.sh
 fi
 
