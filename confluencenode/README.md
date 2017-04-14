@@ -126,3 +126,11 @@ with correct node name:
 
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/init/13.png" /></p>
+
+
+[Troubleshoot Synchrony](https://confluence.atlassian.com/doc/troubleshooting-collaborative-editing-858772087.html)
+
+Synchrony should also have started up right, check with:
+
+  * [http://localhost:8091/synchrony/heartbeat](http://localhost:8091/synchrony/heartbeat)
+  * Should display: "ok"
