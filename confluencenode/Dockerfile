@@ -11,6 +11,7 @@ RUN addgroup -g 10777 worker && \
     chown -R worker:worker /work-private/ && \
     apk add --no-cache \
             bash \
+            musl-utils \
             curl \
             tar \
             postgresql \
