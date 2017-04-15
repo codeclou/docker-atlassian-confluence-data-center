@@ -5,18 +5,25 @@
         Require all granted
     </Proxy>
     Header add Set-Cookie  "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/"  env=BALANCER_ROUTE_CHANGED
-    <Proxy balancer://confluence-cluster>
-        {% for n in range(1, (amountNodes+1)) %}
-            BalancerMember http://confluence-cluster-611-node{{ n }}:8090 route={{ n }}
-        {% endfor %}
-    </Proxy>
+
     <Proxy balancer://confluence-synchrony-cluster>
         {% for n in range(1, (amountNodes+1)) %}
             BalancerMember ws://confluence-cluster-611-node{{ n }}:8091 route={{ n }}
         {% endfor %}
     </Proxy>
-    ProxyPass /            balancer://confluence-cluster/                     stickysession=ROUTEID
     ProxyPass /synchrony   balancer://confluence-synchrony-cluster/synchrony  stickysession=ROUTEID
+    <Location /synchrony>
+        Require all granted
+        #RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
+        #RewriteCond %{HTTP:CONNECTION} Upgrade$ [NC]
+    </Location>
+
+    <Proxy balancer://confluence-cluster>
+    {% for n in range(1, (amountNodes+1)) %}
+        BalancerMember http://confluence-cluster-611-node{{ n }}:8090 route={{ n }}
+    {% endfor %}
+    </Proxy>
+    ProxyPass /            balancer://confluence-cluster/                     stickysession=ROUTEID
 
     ProxyPreserveHost on
     ProxyRequests off
