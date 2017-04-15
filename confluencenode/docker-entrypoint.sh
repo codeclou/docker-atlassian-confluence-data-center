@@ -19,6 +19,8 @@ export DATABASE_HOST="confluence-cluster-611-db"
 export DATABASE_USER="confluence"
 export DATABASE_PASS="confluence"
 export DATABASE_DB="confluence"
+export LB_NAME="confluence-cluster-611-lb"
+export LB_PORT="50611"
 
 #
 # SYNCHRONY VARS
@@ -40,6 +42,11 @@ sed -i -e "s/export CATALINA_OPTS/#replaced/g" /confluence/atlassian-confluence-
 echo -e "CATALINA_OPTS=\"-Dconfluence.cluster.node.name=${NODE_ID} \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 echo -e "CATALINA_OPTS=\"-Dsynchrony.service.url=http://confluence-cluster-611-lb:50611/synchrony/v1 \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
+
+#
+# PATCH server.xml FOR PROXY USE
+#
+sed -i -e "s/port=\"8090\"/port=\"8090\" proxyName=\"${LB_NAME}\" proxyPort=\"${LB_PORT}\" scheme=\"http\"/g" /confluence/atlassian-confluence-latest/conf/server.xml
 
 #
 # WRITE ENV VARIABLES JSON FILE
@@ -107,6 +114,7 @@ then
     echo ">> docker-entrypoint: starting synchrony"
     jinja2 /work-private/run-synchrony-jar.sh.jinja2 /work-private/env-variables.json > /work-private/run-synchrony-jar.sh
     bash /work-private/run-synchrony-jar.sh
+
 fi
 
 exec "$@"

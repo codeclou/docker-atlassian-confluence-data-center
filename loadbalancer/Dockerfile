@@ -37,6 +37,7 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     echo "LoadModule proxy_balancer_module modules/mod_proxy_balancer.so" >> /etc/apache2/httpd.conf && \
     echo "LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so" >> /etc/apache2/httpd.conf && \
     echo "LoadModule slotmem_shm_module modules/mod_slotmem_shm.so" >> /etc/apache2/httpd.conf && \
+    echo "LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so" >> /etc/apache2/httpd.conf && \
     echo "Include /work-private/loadbalancer-virtual-host.conf" >> /etc/apache2/httpd.conf
 
 #
