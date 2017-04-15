@@ -254,6 +254,20 @@ function remove_all_dangling_confluencenodes {
     done
 }
 
+
+# Check if license is not empty
+#
+#
+function check_if_license_env_var_is_set {
+    if [ -z "$CONFLUENCE_DATA_CENTER_LICENSE" ]
+    then
+        echo -e $C_CYN">> license ............:${C_RST}${C_RED} ERROR${C_RST}     - license env var seems to not be set. Please set CONFLUENCE_DATA_CENTER_LICENSE"$C_RST
+        exit 1
+    else
+        echo -e $C_CYN">> license ............:${C_RST}${C_GRN} OK${C_RST}        - license env var seems to be set."$C_RST
+    fi
+}
+
 # Prints info
 #
 #
@@ -359,6 +373,9 @@ then
     pull_latest_images
     echo ""
 
+    check_if_license_env_var_is_set
+    echo ""
+
     create_network
     echo ""
 
@@ -409,6 +426,9 @@ fi
 if [ "$ACTION" == "update" ]
 then
     echo -e $C_CYN">> action .............:${C_RST}${C_GRN} UPDATE${C_RST}    - Update running cluster."$C_RST
+    echo ""
+
+    check_if_license_env_var_is_set
     echo ""
 
     running_confluencenode_count=0

@@ -27,6 +27,37 @@ manage-confluence-cluster-6.1.1.sh --action create --scale 2
 ```
 
 
+Check Synchrony: http://confluence-cluster-611-lb:50611/synchrony/heartbeat
+
+Check Confluence: http://confluence-cluster-611-lb:50611/
+
+
+'Administration'  'Collaborative editing'
+
+post-config
+
+
+20.png	
+ 
+21.png	
+ 
+30.png	
+ 
+40.png	
+ 
+41.png	
+ 
+42.png
+
+
+doc
+
+
+demo.gif	
+ 
+ 
+setup-structure.png
+
 -----
 
 &nbsp;
