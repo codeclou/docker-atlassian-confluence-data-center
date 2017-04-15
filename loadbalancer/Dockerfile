@@ -34,6 +34,7 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     sed -i -e 's/Listen 80/Listen 50611\nServerName localhost/g' /etc/apache2/httpd.conf && \
     sed -i -e 's/AllowOverride\s*None/AllowOverride All/ig' /etc/apache2/httpd.conf && \
     echo "LoadModule proxy_module modules/mod_proxy.so" >> /etc/apache2/httpd.conf && \
+    echo "LoadModule rewrite_module modules/mod_rewrite.so" >> /etc/apache2/httpd.conf && \
     echo "LoadModule proxy_http_module modules/mod_proxy_http.so" >> /etc/apache2/httpd.conf && \
     echo "LoadModule proxy_balancer_module modules/mod_proxy_balancer.so" >> /etc/apache2/httpd.conf && \
     echo "LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so" >> /etc/apache2/httpd.conf && \
