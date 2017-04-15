@@ -41,7 +41,6 @@ echo -e "CATALINA_OPTS=\"-Dconfluence.cluster.node.name=${NODE_ID} \${CATALINA_O
 echo -e "CATALINA_OPTS=\"-Dsynchrony.service.url=http://confluence-cluster-611-lb:50611/synchrony/v1 \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 
-
 #
 # WRITE ENV VARIABLES JSON FILE
 #
