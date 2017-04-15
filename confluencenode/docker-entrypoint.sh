@@ -32,7 +32,7 @@ export CLUSTER_LISTEN_PORT="5701"
 export CLUSTER_BASE_PORT="25500"
 export MULTICAST_GROUP=$MULTICAST_CLUSTER_ADDRESS
 export SERVER_IP=$IP_ADDRESS
-export SYNCHRONY_URL="http://confluence-cluster-611-lb:50611/synchrony"
+export SYNCHRONY_URL="http://confluence-cluster-611-lb:50611"
 
 #
 # PATCH SETENV.SH

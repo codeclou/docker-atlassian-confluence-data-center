@@ -5,6 +5,7 @@ FROM alpine:3.5
 #
 RUN apk add --no-cache \
             bash \
+            curl \
             apache2 \
             apache2-proxy \
             apache2-utils \
