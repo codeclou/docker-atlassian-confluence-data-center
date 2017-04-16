@@ -151,7 +151,6 @@ Should show something like:
 
 ```
 373f159568f4    confluence-cluster-611-lb      0.0.0.0:50611->50611/tcp
-a0deac7bd71c    confluence-cluster-611-node2   5701/tcp, 5801/tcp, 8090-8091/tcp, 25500/tcp
 816c1c17a821    confluence-cluster-611-node1   5701/tcp, 5801/tcp, 8090-8091/tcp, 25500/tcp
 38575aee0e9d    confluence-cluster-611-db      5432/tcp
 ```
