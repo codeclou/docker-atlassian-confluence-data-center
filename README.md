@@ -1,5 +1,7 @@
 # docker-atlassian-confluence-data-center
 
+[![](https://codeclou.github.io/doc/badges/generated/docker-image-size-800.svg?v6)](https://hub.docker.com/r/codeclou/docker-atlassian-confluence-data-center/tags/) [![](https://codeclou.github.io/doc/badges/generated/docker-from-alpine-3.5.svg)](https://alpinelinux.org/) [![](https://codeclou.github.io/doc/badges/generated/docker-run-as-non-root.svg)](https://docs.docker.com/engine/reference/builder/#/user)
+
 ## :sparkles: 6.1.1
 
 Start an [Atlassian Confluence® Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
@@ -182,7 +184,14 @@ Change the baseUrl to `http://confluence-cluster-611-lb:50611`.
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/21.png?v2" width="80%"/></p>
 
-Now enable **Collaborative editing**
+
+
+
+&nbsp;
+
+**(5) Enable Collaborative Editing**
+
+Now enable Collaborative editing under 'Administration' → 'Collaborative editing'.
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/40.png?v2" width="80%"/></p>
 
@@ -190,43 +199,28 @@ Now enable **Collaborative editing**
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/42.png?v2" width="80%"/></p>
 
+&nbsp;
 
-----
+(6) Scale Up Cluster - Add Confluence® Nodes
 
-Start Cluster with two Confluence nodes, one PostgreSQL Database instance and one loadbalancer instance.
+Now that our first Confluence® Node is fully working we add additional nodes to our existing cluster.
 
 ```bash
-manage-confluence-cluster-6.1.1.sh --action create --scale 2
+manage-confluence-cluster-6.1.1.sh --action update --scale 3
 ```
+
+This will **add two additional Confluence® Nodes** and reconfigure the loadbalancer automatically.
+
+Wait again several minutes and now check if all nodes are active and alive under 'System' → 'Clustering'.
+
+30.png	 shows two cluster nodes
 
 
 Check Synchrony: http://confluence-cluster-611-lb:50611/synchrony/heartbeat
 
-Check Confluence: http://confluence-cluster-611-lb:50611/
-
-
-'Administration'  'Collaborative editing'
-
-
-
- 
-
-
-
-
-
-
-30.png	 shows two cluster nodes
 
 50.png = healthcheck
 
-
-
-doc
-
-
-demo.gif	
- 
 
 -----
 
