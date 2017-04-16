@@ -138,7 +138,7 @@ function start_instance_confluencenode {
         --net=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE} \
         --net-alias=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-node${1} \
         --env NODE_NUMBER=${1} \
-        --env CONFLUENCE_DATA_CENTER_LICENSE="$CONFLUENCE_DATA_CENTER_LICENSE" \
+        --env CONFLUENCE_DATA_CENTER_LICENSE_611="$CONFLUENCE_DATA_CENTER_LICENSE_611" \
         -v confluence-shared-home-${CONFLUENCE_VERSION_DOT_FREE}:/confluence-shared-home \
         -d codeclou/docker-atlassian-confluence-data-center:confluencenode-${CONFLUENCE_VERSION}
 }
@@ -259,9 +259,9 @@ function remove_all_dangling_confluencenodes {
 #
 #
 function check_if_license_env_var_is_set {
-    if [ -z "$CONFLUENCE_DATA_CENTER_LICENSE" ]
+    if [ -z "$CONFLUENCE_DATA_CENTER_LICENSE_611" ]
     then
-        echo -e $C_CYN">> license ............:${C_RST}${C_RED} ERROR${C_RST}     - license env var seems to not be set. Please set CONFLUENCE_DATA_CENTER_LICENSE"$C_RST
+        echo -e $C_CYN">> license ............:${C_RST}${C_RED} ERROR${C_RST}     - license env var seems to not be set. Please set CONFLUENCE_DATA_CENTER_LICENSE_611"$C_RST
         exit 1
     else
         echo -e $C_CYN">> license ............:${C_RST}${C_GRN} OK${C_RST}        - license env var seems to be set."$C_RST
@@ -323,7 +323,7 @@ echo -e $C_MGN'  /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/   \____/_/\__,_/____/\__/
 echo -e $C_MGN'                           /____/                                            '$C_RST
 echo ""
 echo -e $C_MGN'  Manage local Confluence® Data Center cluster during Plugin development with Docker'$C_RST
-echo -e $C_MGN'  https://github.com/codeclou/docker-atlassian-confluence-data-center'$C_RST
+echo -e $C_MGN'  https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/6.1.1'$C_RST
 echo -e $C_MGN"  Confluence Version: ${CONFLUENCE_VERSION}"$C_RST
 echo -e $C_MGN"  PostgreSQL Version: ${POSTGRESQL_VERSION}"$C_RST
 echo -e $C_MGN'  ------'$C_RST

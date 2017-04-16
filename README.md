@@ -92,7 +92,7 @@ docker-atlassian-confluence-data-center/6.1.1/manage-confluence-cluster-6.1.1.sh
 #
 # CHECK SHA SUM - Should output OK
 #
-echo "ba570cf9e0c1041a4b5731ca3054949d3dbd47a3be9fbe6e7ff8df51d5896cf8  \
+echo "a059e7bf48f53c702227e6aed74faf0fe4d4a40bc5e1958ab1e22ddaeb42622b  \
 /usr/local/bin/manage-confluence-cluster-6.1.1.sh" \
 > /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
 gsha256sum -c /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
