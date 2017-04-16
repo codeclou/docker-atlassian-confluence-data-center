@@ -33,7 +33,7 @@ The script is meant to follow the convention over configuration paradigma, there
 
 The basic setup is as follows:
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/setup-structure.png" width="95%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/setup-structure.png?v2" width="95%"/></p>
 
 -----
 
