@@ -33,7 +33,7 @@ The script is meant to follow the convention over configuration paradigma, there
 
 The basic setup is as follows:
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/setup-structure.png" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/setup-structure.png" width="95%"/></p>
 
 -----
 
@@ -93,7 +93,8 @@ docker-atlassian-confluence-data-center/6.1.1/manage-confluence-cluster-6.1.1.sh
 # CHECK SHA SUM - Should output OK
 #
 echo "ba570cf9e0c1041a4b5731ca3054949d3dbd47a3be9fbe6e7ff8df51d5896cf8  \
-/usr/local/bin/manage-confluence-cluster-6.1.1.sh" > /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
+/usr/local/bin/manage-confluence-cluster-6.1.1.sh" \
+> /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
 gsha256sum -c /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
 
 #
@@ -102,6 +103,17 @@ gsha256sum -c /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
 chmod +x /usr/local/bin/manage-confluence-cluster-6.1.1.sh
 ```
 
+
+&nbsp;
+
+**(4) Provide Confluence Data Center License as Environment Variable**
+
+Please get yourself a valid Confluence Data Center license from my.atlassian.com and at best define it in your `.bashrc`
+like so. Please replace all newlines with whitespaces, so that the license is just one line.
+
+```bash
+export CONFLUENCE_DATA_CENTER_LICENSE_611="AAABRg0ODAoPeNp1UMtOg0AU3c9XTOJGFzQFitUmJJZHTBOgRtCF..."
+```
 
 -----
 
@@ -172,10 +184,7 @@ port is versioned as well as network and container names!
 :bangbang: **WORK IN PROGRESS** :bangbang: 
 
 
-at best put in `.bashrc`
-```bash
-export CONFLUENCE_DATA_CENTER_LICENSE="AAABRg0ODAoPeNp1UMtOg0AU3c9XTOJGFzQFitUmJJZHTBOgRtCF..."
-```
+
 
 Start Cluster with two Confluence nodes, one PostgreSQL Database instance and one loadbalancer instance.
 
