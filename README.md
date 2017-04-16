@@ -7,6 +7,9 @@
 Start an [Atlassian Confluence® Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
 It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume. This is not meant to be used in production!
 
+&nbsp;
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/demo.gif" width="80%"/></p>
 
 -----
 
@@ -94,7 +97,7 @@ docker-atlassian-confluence-data-center/6.1.1/manage-confluence-cluster-6.1.1.sh
 #
 # CHECK SHA SUM - Should output OK
 #
-echo "8e385695d1f1b3029b07073b5e51a4a322b5656530c32c424cedb46ffa196207  \
+echo "c3bfee2718e6a214db996da0666b0d7a8ad7818c6f4f1ea6fe473bad74b9201c  \
 /usr/local/bin/manage-confluence-cluster-6.1.1.sh" \
 > /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
 gsha256sum -c /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
@@ -213,11 +216,11 @@ This will **add two additional Confluence® Nodes** and reconfigure the loadbala
 
 Wait again several minutes and now check if all nodes are active and alive under 'Administration' → 'Clustering'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/30.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/30.png?v4" width="80%"/></p>
 
 Run the **Healthcheck** under 'Administration' → 'Support Tools'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/50.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/50.png?v4" width="80%"/></p>
 
 And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-611-lb:50611/synchrony/heartbeat](http://confluence-cluster-611-lb:50611/synchrony/heartbeat) and it should output `ok`.
 

@@ -74,15 +74,6 @@ function _kill_and_remove_named_instance_if_exists {
     else
         echo -e $C_CYN">> docker kill ........:${C_RST}${C_MGN} Skipping${C_RST}  - Named container ${container_name} is not running."
     fi
-    # DELETE
-    named_container_exists=$(docker ps --all --format '{{.Names}}' --filter "name=${container_name}" | wc -l | awk '{print $1}')
-    if (( named_container_exists == 1 )) # arithmetic brackets ... woohoo
-    then
-        echo -e $C_CYN">> docker rm ..........:${C_RST}${C_GRN} Deleting${C_RST}  - Named container ${container_name} does exist."
-        docker rm ${container_name}
-    else
-        echo -e $C_CYN">> docker rm ..........:${C_RST}${C_MGN} Skipping${C_RST}  - Named container ${container_name} does not exist."
-    fi
 }
 
 # Start the loadbalancer instance
@@ -91,6 +82,7 @@ function _kill_and_remove_named_instance_if_exists {
 function start_instance_loadbalancer {
     echo -e $C_CYN">> docker run .........:${C_RST}${C_GRN} Starting${C_RST}  - Starting instance confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-lb."
     docker run \
+        --rm \
         --name confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-lb \
         --net=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE} \
         --net-alias=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-lb \
@@ -112,6 +104,7 @@ function kill_instance_loadbalancer {
 function start_instance_database {
     echo -e $C_CYN">> docker run .........:${C_RST}${C_GRN} Starting${C_RST}  - Starting instance confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-db."
     docker run \
+        --rm \
         --name confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-db \
         --net=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE} \
         --net-alias=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-db \
@@ -395,6 +388,8 @@ then
     kill_instance_loadbalancer
     start_instance_loadbalancer $SCALE
     echo ""
+
+    sleep 10
 
     for (( node_id=1; node_id<=$SCALE; node_id++ ))
     do

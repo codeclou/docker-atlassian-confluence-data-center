@@ -11,8 +11,8 @@
 ```bash
 docker network create confluence-cluster 
 
-docker rm confluence-cluster-db
 docker run \
+    --rm \
     --name confluence-cluster-db \
     --net=confluence-cluster \
     --net-alias=confluence-cluster-db \
@@ -22,9 +22,9 @@ docker run \
 
 cd confluencenode
 docker build -t confluencenode-init .
-docker rm confluence-node-init
 docker run \
     -i -t \
+    --rm \
     --name=confluence-node-init \
     --net=confluence-cluster \
     --net-alias=confluence-node-init \
