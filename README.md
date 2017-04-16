@@ -149,7 +149,7 @@ Check if all containers have started with:
 manage-confluence-cluster-6.1.1.sh --action info
 ```
 
-Should show something like:
+Should show something like so. If `confluence-cluster-611-node1` does not show up, then re-run the create cluster command! 
 
 ```
 373f159568f4    confluence-cluster-611-lb      0.0.0.0:50611->50611/tcp
@@ -201,7 +201,7 @@ Now enable Collaborative editing under 'Administration' → 'Collaborative editi
 
 &nbsp;
 
-(6) Scale Up Cluster - Add Confluence® Nodes
+**(6) Scale Up Cluster - Add Confluence® Nodes**
 
 Now that our first Confluence® Node is fully working we add additional nodes to our existing cluster.
 
@@ -211,16 +211,55 @@ manage-confluence-cluster-6.1.1.sh --action update --scale 3
 
 This will **add two additional Confluence® Nodes** and reconfigure the loadbalancer automatically.
 
-Wait again several minutes and now check if all nodes are active and alive under 'System' → 'Clustering'.
+Wait again several minutes and now check if all nodes are active and alive under 'Administration' → 'Clustering'.
 
-30.png	 shows two cluster nodes
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/30.png?v2" width="80%"/></p>
+
+Run the **Healthcheck** under 'Administration' → 'Support Tools'.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/50.png?v2" width="80%"/></p>
+
+And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-611-lb:50611/synchrony/heartbeat](http://confluence-cluster-611-lb:50611/synchrony/heartbeat) and it should output `ok`.
+
+If not all nodes you have started are active, try restarting all nodes not showing up.
+
+For example if Instance 3 does not show up, you can restart it like so:
+
+```bash
+manage-confluence-cluster-6.1.1.sh --action restart-node --id 3
+```
+
+Your cluster works perfectly now.
+
+&nbsp;
+
+**(6) Shutting down the cluster**
+
+```bash
+manage-confluence-cluster-6.1.1.sh --action destroy
+```
+
+This will kill and remove all instances.
 
 
-Check Synchrony: http://confluence-cluster-611-lb:50611/synchrony/heartbeat
+-----
 
+&nbsp;
 
-50.png = healthcheck
+### Compatibility
 
+Tested under the following Operating Systems:
+
+ * Ubuntu 16.04 64 Bit Server
+   * Docker version 17.03.0-ce, build 60ccb22
+   * GNU bash, version 4.3.46(1)-release (x86_64-pc-linux-gnu)
+ * OS X El Capitan and macOS Sierra
+   * Docker version 17.03.0-ce, build 60ccb22
+   * GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15)
+
+Not tested and not compatible under the following Operating Systems:
+
+  * Microsoft Windows
 
 -----
 
