@@ -178,6 +178,18 @@ Now you should see a message to **correct the baseUrl**.
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/20.png?v2" width="80%"/></p>
 
+Change the baseUrl to `http://confluence-cluster-611-lb:50611`.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/21.png?v2" width="80%"/></p>
+
+Now enable **Collaborative editing**
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/40.png?v2" width="80%"/></p>
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/41.png?v2" width="80%"/></p>
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/42.png?v2" width="80%"/></p>
+
 
 ----
 
@@ -195,22 +207,16 @@ Check Confluence: http://confluence-cluster-611-lb:50611/
 
 'Administration'  'Collaborative editing'
 
-post-config
 
 
-20.png	
  
-21.png	
- 
-30.png	
- 
-40.png	
- 
-41.png	
- 
-42.png
 
 
+
+
+
+
+30.png	 shows two cluster nodes
 
 50.png = healthcheck
 
