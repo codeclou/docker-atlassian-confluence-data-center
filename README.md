@@ -26,8 +26,9 @@ It basically works in the following way:
     * Binds Port 50611/tcp to the host.
   * It creates a docker container called `confluence-cluster-611-db` as the database.
     * Port 5432/tcp are only exposed inside the `confluence-cluster-611` network.
-  * It creates multiple docker containers called `confluence-cluster-611-node{n}` as Confluence instances with `n ∈ {1,2,3,...,100}`.
-    * This instance runs [Confluence](https://confluence.atlassian.com/doc/confluence-server-documentation-135922.html) on Port 8090/tcp and [Synchrony](https://confluence.atlassian.com/doc/administering-collaborative-editing-858772086.html) on Port 8091/tcp.
+  * It creates multiple docker containers called `confluence-cluster-611-node{n}` as Confluence instances.
+    * With `n ∈ {1,2,3,...,100}`.
+    * An instance runs [Confluence](https://confluence.atlassian.com/doc/confluence-server-documentation-135922.html) on Port 8090/tcp and [Synchrony](https://confluence.atlassian.com/doc/administering-collaborative-editing-858772086.html) on Port 8091/tcp.
     * Ports 8090,8091/tcp and the multicast Ports 25500,5701/tcp are only exposed inside the `confluence-cluster-611` network.
 
 The script is meant to follow the convention over configuration paradigma, therefore there is not much to be configured, except two things:
