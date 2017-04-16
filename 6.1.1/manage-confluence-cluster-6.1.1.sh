@@ -316,7 +316,7 @@ echo -e $C_MGN'  /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/   \____/_/\__,_/____/\__/
 echo -e $C_MGN'                           /____/                                            '$C_RST
 echo ""
 echo -e $C_MGN'  Manage local Confluence® Data Center cluster during Plugin development with Docker'$C_RST
-echo -e $C_MGN'  https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/6.1.1'$C_RST
+echo -e $C_MGN'  https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.1'$C_RST
 echo -e $C_MGN"  Confluence Version: ${CONFLUENCE_VERSION}"$C_RST
 echo -e $C_MGN"  PostgreSQL Version: ${POSTGRESQL_VERSION}"$C_RST
 echo -e $C_MGN'  ------'$C_RST
