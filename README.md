@@ -128,6 +128,7 @@ manage-confluence-cluster-6.1.1.sh --action create --scale 1
 ```
 
  * Start one node at first and later scale up the cluster!
+ * The first Confluence node that gets started initializes the confluence-shared-home and the database.
 
 &nbsp;
 
@@ -170,21 +171,16 @@ Once the cluster is fully started up, you need to configure Confluence® Data Ce
 
 Go to **[http://confluence-cluster-611-lb:50611/](http://confluence-cluster-611-lb:50611/)** and make sure you enabled cookies in your Browser (sticky session).
 
+First login as `admin` with password `admin`.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/19.png?v2" width="80%"/></p>
+
+Now you should see a message to **correct the baseUrl**. 
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/20.png?v2" width="80%"/></p>
 
 
-
-Since the Setup is [rather complex](https://confluence.atlassian.com/doc/installing-confluence-data-center-203603.html), we will start a preconfigured cluster,
-that has already been setup. Meaning a preconfigured confluence-home and database-dump are used.
-
-http://confluence-cluster-611-lb:50611/
-
-port is versioned as well as network and container names!
-
-
-:bangbang: **WORK IN PROGRESS** :bangbang: 
-
-
-
+----
 
 Start Cluster with two Confluence nodes, one PostgreSQL Database instance and one loadbalancer instance.
 

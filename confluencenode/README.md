@@ -1,6 +1,6 @@
 # Confluence Node
 
-:bangbang: We startup already initialized Confluence nodes!
+:bangbang: We startup an already initialized Confluence on each node!
 
  * That means, we had them started one, run through setup wizard, dumped database and zipped confluence-home
  * Then we injected the dump and the confluence-home into our Dockerfile, so that we can start as many confluence nodes in the cluster as we want
@@ -137,6 +137,3 @@ Synchrony should also have started up right, check with:
 
   * [http://localhost:8091/synchrony/heartbeat](http://localhost:8091/synchrony/heartbeat)
   * Should display: "ok"
-
-
-Synchron Proxy Howto: https://confluence.atlassian.com/doc/administering-collaborative-editing-858772086.html#AdministeringCollaborativeEditing-proxies
