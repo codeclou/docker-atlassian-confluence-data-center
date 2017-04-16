@@ -7,7 +7,7 @@ Please choose the Confluence version you want to run:
 
 |Confluence Version | Loadbalancer URL | PostgreSQL Version | Oracle Java Version |
 |-------------------|--------------------|-----------------|-----------------------|
-| **:sparkles: [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/6.1.1)** | http://confluence-cluster-611-lb:50611/ | [9.4](https://hub.docker.com/_/postgres/) | [8u121](https://github.com/codeclou/docker-atlassian-base-images/blob/master/confluence/6.1.1/Dockerfile) |
+| **⇨ [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/6.1.1)** | http://confluence-cluster-611-lb:50611/ | [9.4](https://hub.docker.com/_/postgres/) | [8u121](https://github.com/codeclou/docker-atlassian-base-images/blob/master/confluence/6.1.1/Dockerfile) |
 
 
 -----
@@ -39,4 +39,4 @@ Please choose the Confluence version you want to run:
 
 ### License
 
-[MIT](./LICENSE) © [Bernhard Grünewaldt](https://github.com/clouless)
+[MIT](https://github.com/codeclou/docker-atlassian-confluence-data-center/blob/master/LICENSE) © [Bernhard Grünewaldt](https://github.com/clouless)
