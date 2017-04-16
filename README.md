@@ -3,7 +3,7 @@
 Start an [Atlassian Confluence® Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
 It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume. This is not meant to be used in production!
 
-![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/manage-confluence-cluster-logo.svg)
+[![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/manage-confluence-cluster-logo.svg)](https://github.com/codeclou/docker-atlassian-confluence-data-center)
 
 
 Please choose the Confluence version you want to run:
