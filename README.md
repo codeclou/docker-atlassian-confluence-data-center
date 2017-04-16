@@ -5,9 +5,9 @@ It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 
 
 Please choose the Confluence version you want to run:
 
-|Confluence Version | PostgreSQL Version | Loadbalancer URL |
-|-------------------|--------------------|-----------------|
-| **:sparkles: [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/6.1.1)** | 9.4 | http://confluence-cluster-611-lb:50611/ |
+|Confluence Version | Loadbalancer URL | PostgreSQL Version | Oracel Java Version |
+|-------------------|--------------------|-----------------|-----------------------|
+| **:sparkles: [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/6.1.1)** | http://confluence-cluster-611-lb:50611/ | 9.4 | [8u121](https://github.com/codeclou/docker-atlassian-base-images/blob/master/confluence/6.1.1/Dockerfile) |
 
 
 -----
