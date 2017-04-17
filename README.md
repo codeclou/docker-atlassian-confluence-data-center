@@ -12,6 +12,9 @@ Please choose the Confluence version you want to run:
 |-------------------|--------------------|-----------------|-----------------------|
 | **⇨ [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.1)** | http://confluence-cluster-611-lb:50611/ | [9.4](https://hub.docker.com/_/postgres/) | [8u121](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.1/Dockerfile) |
 
+**Please Note:**
+ * I do not provide support. If you have questions on how to run Confluence and/or Confluence Data Center, please ask in the 
+[Atlassian Community](https://community.atlassian.com/).
 
 -----
 
