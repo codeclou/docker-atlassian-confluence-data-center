@@ -95,8 +95,9 @@ On macOS® you do this with:
 # DOWNLOAD MANAGEMENT SCRIPT
 #
 curl -so /usr/local/bin/manage-confluence-cluster-6.1.1.sh \
-"https://raw.githubusercontent.com/codeclou/\
-docker-atlassian-confluence-data-center/6.1.1/manage-confluence-cluster-6.1.1.sh"
+"https://raw.githubusercontent.com/codeclou/docker-atlassian-\
+confluence-data-center/master/6.1.1/manage-confluence-cluster-6.1.1.sh"
+
 
 #
 # CHECK SHA SUM - Should output OK
