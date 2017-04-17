@@ -20,7 +20,7 @@ It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 
 
 ### Manage Cluster Script
 
-To start, scale, stop and destroy the cluster, the [`manage-confluence-cluster-6.1.1.sh`](https://github.com/codeclou/docker-atlassian-confluence-data-center/blob/6.1.1/manage-confluence-cluster-6.1.1.sh) script is provided.
+To start, scale, stop and destroy the cluster, the [`manage-confluence-cluster-6.1.1.sh`](https://github.com/codeclou/docker-atlassian-confluence-data-center/blob/master/6.1.1/manage-confluence-cluster-6.1.1.sh) script is provided.
 It basically works in the following way:
 
   * It creates a docker bridge network called `confluence-cluster-611`.
