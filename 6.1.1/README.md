@@ -52,7 +52,7 @@ The basic setup is as follows:
 
  * All Docker containers run internally as non-root with fixed UID 10777 and GID 10777.
  * You need Linux or macOS®.
- * Basic unix-tools like `wc`, `awk`, `curl` and `bash` must be installed.
+ * Basic unix-tools like `wc`, `awk`, `curl`, `tr`, `head` and `bash` must be installed.
  * Bash 3 or 4 must be installed.
  * Latest Docker version must be installed.
 
@@ -102,7 +102,7 @@ confluence-data-center/master/6.1.1/manage-confluence-cluster-6.1.1.sh"
 #
 # CHECK SHA SUM - Should output OK
 #
-echo "95da1b192e2743a1af8e75b525e541580908d3ebab0e5c13e230c3fdd3ccaf82  \
+echo "fb0a203a5360ac851a95336eb0a2256eb488428bc352ed8eabd2ec9ad9aa1432  \
 /usr/local/bin/manage-confluence-cluster-6.1.1.sh" \
 > /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum
 gsha256sum -c /usr/local/bin/manage-confluence-cluster-6.1.1.sh.sha256sum

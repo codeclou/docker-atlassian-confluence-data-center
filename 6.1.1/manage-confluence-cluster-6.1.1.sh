@@ -8,6 +8,16 @@
 
 set -e
 
+
+####################################################################################
+#
+# VERSION
+#
+####################################################################################
+# keep in sync with 'manage-confluence-cluster-6.1.1-version.txt'
+MANAGEMENT_SCRIPT_VERSION=1
+
+
 ####################################################################################
 #
 # CONFIG
@@ -261,6 +271,21 @@ function check_if_license_env_var_is_set {
     fi
 }
 
+
+# Update check
+#
+#
+function update_check {
+    local unique_hash=$(cat /dev/random | LC_CTYPE=C tr -dc "[:alpha:]" | head -c 16)
+    local latest_version=$(curl -s https://raw.githubusercontent.com/codeclou/docker-atlassian-confluence-data-center/master/6.1.1/manage-confluence-cluster-6.1.1-version.txt?r=${unique_hash})
+    if (( latest_version > MANAGEMENT_SCRIPT_VERSION )) # arithmetic brackets ... woohoo
+    then
+        echo -e $C_CYN">> management script ..:${C_RST}${C_RED} OUTOFDATE${C_RST} - please update the management script. Visit GitHub for instructions."
+    else
+        echo -e $C_CYN">> management script ..:${C_RST}${C_GRN} UPTODATE${C_RST}  - your script is up to date."
+    fi
+}
+
 # Prints info
 #
 #
@@ -363,6 +388,9 @@ then
     echo -e $C_CYN">> action .............:${C_RST}${C_GRN} CREATE${C_RST}    - Creating new cluster and destroying existing if exists"$C_RST
     echo ""
 
+    update_check
+    echo ""
+
     pull_latest_images
     echo ""
 
@@ -423,6 +451,9 @@ then
     echo -e $C_CYN">> action .............:${C_RST}${C_GRN} UPDATE${C_RST}    - Update running cluster."$C_RST
     echo ""
 
+    update_check
+    echo ""
+
     check_if_license_env_var_is_set
     echo ""
 
@@ -463,6 +494,10 @@ if [ "$ACTION" == "info" ]
 then
     echo -e $C_CYN">> action .............:${C_RST}${C_GRN} INFO${C_RST}      - Cluster information."$C_RST
     echo ""
+
+    update_check
+    echo ""
+
 
     running_confluencenode_count=0
     get_running_confluencenode_count running_confluencenode_count
