@@ -32,7 +32,7 @@ EXPOSE 25500
 USER worker
 ENV NODE_NUMBER 1
 ENV INIT "false"
-ENV CONFLUENCE_DATA_CENTER_LICENSE_611 "define-me"
+ENV CONFLUENCE_DATA_CENTER_LICENSE_612 "define-me"
 VOLUME ["/work"]
 VOLUME ["/confluence-shared-home"]
 ENTRYPOINT ["/work-private/docker-entrypoint.sh"]
