@@ -11,6 +11,8 @@ Please choose the Confluence version you want to run:
 |Confluence Version | Loadbalancer URL | PostgreSQL Version | Oracle Java Version |
 |-------------------|--------------------|-----------------|-----------------------|
 | **⇨ [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.1)** | http://confluence-cluster-611-lb:50611/ | [9.4](https://hub.docker.com/_/postgres/) | [8u121](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.1/Dockerfile) |
+| WORK IN PROGRESS: **⇨ [6.1.2](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.2)** | http://confluence-cluster-612-lb:50612/ | [9.4](https://hub.docker.com/_/postgres/) | [8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.2/Dockerfile) |
+
 
 **Please Note:**
  * I do not provide support. If you have questions on how to run Confluence and/or Confluence Data Center, please ask in the 
