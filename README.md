@@ -22,6 +22,48 @@ Please choose the Confluence version you want to run:
 
 &nbsp;
 
+### Running the Confluence Data Center Plugin Validator
+
+If the cluster is finally started up, you can run the [https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator](https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator)
+But before you do, please verify:
+
+ * (1) UPM is up to date
+ * (2) All Cluster Nodes are active
+ * (3) Your plugin is installed successfully
+
+Now connect to one of the cluster nodes via:
+
+```bash
+docker exec -i -t confluence-cluster-612-node1 bash
+
+# Now inside the container run:
+java -jar cdc-plugin-validator-1.0.0.jar \
+     -installation /confluence/atlassian-confluence-latest \
+     -dbuser confluence -dbpassword confluence \
+     -dburl jdbc:postgresql://confluence-cluster-612-db:5432/confluence \
+     -dbdriver org.postgresql.Driver \
+     -dbfile /confluence/atlassian-confluence-latest/confluence/WEB-INF/lib/postgresql-9.4.1212.jar
+```
+
+You should get an output for your Plugin. For one of my Plugins the output looks like so:
+
+```txt
+...
+Summary:
+========
+PASS: ./plugins/fr.spectrumgroupe.confluence.plugins.formatting.macros--plugin.8952733569564445853.formatting.macros-1.0.13.jar.report
+PASS: ./plugins/com.atlassian.support.stp--stp-3.10.4.jar.report
+PASS: ./plugins/com.atlassian.upm.atlassian-universal-plugin-manager-plugin--plugin.1480744321619799648.atlassian-universal-plugin-manager-plugin-2.22.2.jar.report
+PASS: ./plugins/com.atlassian.confluence.plugins.confluence-healthcheck-plugin--confluence-healthcheck-plugin-2.4.1.jar.report
+PASS: ./plugins/confluencemavenreleaseinfomacro--plugin_6773597919257421869_confluence-maven-release-info-macro-1.5.2.jar.report
+```
+
+Now I can inspect the `confluencemavenreleaseinfomacro--plugin_6773597919257421869_confluence-maven-release-info-macro-1.5.2.jar.report` for further results.
+
+-----
+
+&nbsp;
+
 ### Trademarks and Third Party Licenses
 
  * **Atlassian Confluence®**
