@@ -31,7 +31,7 @@ EXPOSE 25500
 # see-also: https://community.atlassian.com/t5/JIRA-questions/Error-while-trying-to-quot-View-Worfklow-quot-on-JIRA/qaq-p/261856
 #
 ENV LC_CTYPE en_US.UTF-8
-RUN apk add --no-cache ttf-dejavu fontconfig fontconfig-dev
+RUN apk add --no-cache libgcc ttf-dejavu fontconfig fontconfig-dev coreutils
 
 #
 # RUN
