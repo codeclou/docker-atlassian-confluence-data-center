@@ -14,7 +14,6 @@ COPY docker-entrypoint.sh /work-private/docker-entrypoint.sh
 RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     chown -R worker:worker /work-private/
 
-
 #
 # WORKDIR
 #
