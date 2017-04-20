@@ -15,7 +15,7 @@ set -e
 #
 ####################################################################################
 # keep in sync with 'manage-confluence-cluster-6.1.1-version.txt'
-MANAGEMENT_SCRIPT_VERSION=2
+MANAGEMENT_SCRIPT_VERSION=3
 
 
 ####################################################################################
@@ -503,6 +503,6 @@ then
     get_running_confluencenode_count running_confluencenode_count
     echo -e $C_CYN">> info ...............:${C_RST}${C_GRN} OK${C_RST}        - currently ${running_confluencenode_count} Confluence node(s) are running. Showing 'docker ps' for cluster:"$C_RST
     echo ""
-    docker ps --format '{{.ID}}\t {{.Names}}\t {{.Ports}}' --filter "name=confluence-cluster*"
+    docker ps --format '{{.ID}}\t {{.Names}}\t {{.Ports}}' --filter "name=confluence-cluster-611-*"
     echo ""
 fi

@@ -503,6 +503,6 @@ then
     get_running_confluencenode_count running_confluencenode_count
     echo -e $C_CYN">> info ...............:${C_RST}${C_GRN} OK${C_RST}        - currently ${running_confluencenode_count} Confluence node(s) are running. Showing 'docker ps' for cluster:"$C_RST
     echo ""
-    docker ps --format '{{.ID}}\t {{.Names}}\t {{.Ports}}' --filter "name=confluence-cluster*"
+    docker ps --format '{{.ID}}\t {{.Names}}\t {{.Ports}}' --filter "name=confluence-cluster-612-*"
     echo ""
 fi
