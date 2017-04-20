@@ -27,6 +27,12 @@ EXPOSE 5701
 EXPOSE 25500
 
 #
+# FIX 'sun.font.SunFontManager' bugs
+#
+ENV LC_CTYPE en_US.UTF-8
+RUN apk add --no-cache ttf-dejavu fontconfig fontconfig-dev
+
+#
 # RUN
 #
 USER worker
