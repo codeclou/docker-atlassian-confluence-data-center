@@ -36,9 +36,10 @@ Now connect to one of the cluster nodes via:
 
 ```bash
 docker exec -i -t confluence-cluster-612-node1 bash
+```
+Now inside the container run
 
-# Now inside the container run #
-#------------------------------#
+```bash
 cd /work
 # download
 curl -jkSL -o /work/cdc-plugin-validator-1.0.0.jar \
@@ -65,7 +66,7 @@ PASS: ./plugins/com.atlassian.confluence.plugins.confluence-healthcheck-plugin--
 PASS: ./plugins/confluencemavenreleaseinfomacro--plugin_6773597919257421869_confluence-maven-release-info-macro-1.5.2.jar.report
 ```
 
-Now I can inspect the `confluencemavenreleaseinfomacro--plugin_6773597919257421869_confluence-maven-release-info-macro-1.5.2.jar.report` for further results.
+Now you can inspect the reports for further information.
 
 -----
 
