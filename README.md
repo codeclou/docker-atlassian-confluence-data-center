@@ -24,10 +24,10 @@ Please choose the Confluence version you want to run:
 
 ### Running the Confluence Data Center Plugin Validator
 
-If the cluster is finally started up, you can run the [https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator](https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator)
+If the cluster is finally started up, you can run the [Confluence Data Center Plugin Validator](https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator)
 But before you do, please verify:
 
- * (1) UPM is up to date
+ * (1) [Atlassian Universal Plugin Manager](https://marketplace.atlassian.com/plugins/com.atlassian.upm.atlassian-universal-plugin-manager-plugin/server/overview) (UPM) is up to date
  * (2) All Cluster Nodes are active
  * (3) Your plugin is installed successfully
 
