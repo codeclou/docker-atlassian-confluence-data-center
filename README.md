@@ -24,7 +24,8 @@ Please choose the Confluence version you want to run:
 
 ### Running the Confluence Data Center Plugin Validator
 
-If the cluster is finally started up, you can run the [Confluence Data Center Plugin Validator](https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator)
+If the cluster is finally started up, you can run the [Confluence Data Center Plugin Validator](https://developer.atlassian.com/confdev/development-resources/confluence-developer-faq/how-do-i-ensure-my-add-on-works-properly-in-a-cluster/confluence-data-center-plugin-validator).
+
 But before you do, please verify:
 
  * (1) [Atlassian Universal Plugin Manager](https://marketplace.atlassian.com/plugins/com.atlassian.upm.atlassian-universal-plugin-manager-plugin/server/overview) (UPM) is up to date
@@ -36,7 +37,13 @@ Now connect to one of the cluster nodes via:
 ```bash
 docker exec -i -t confluence-cluster-612-node1 bash
 
-# Now inside the container run:
+# Now inside the container run #
+#------------------------------#
+cd /work
+# download
+curl -jkSL -o /work/cdc-plugin-validator-1.0.0.jar \
+https://developer.atlassian.com/confdev/files/29466176/29525066/1/1407451934928/cdc-plugin-validator-1.0.0.jar
+# exec validator
 java -jar cdc-plugin-validator-1.0.0.jar \
      -installation /confluence/atlassian-confluence-latest \
      -dbuser confluence -dbpassword confluence \
