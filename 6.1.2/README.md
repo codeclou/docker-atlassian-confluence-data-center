@@ -12,7 +12,7 @@ It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 
 
 &nbsp;
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/demo.gif" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/doc/demo.gif" width="80%"/></p>
 
 -----
 
@@ -42,7 +42,7 @@ The script is meant to follow the convention over configuration paradigma, there
 
 The basic setup is as follows:
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/doc/setup-structure.png?v2" width="95%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/doc/setup-structure.png?v2" width="95%"/></p>
 
 -----
 
@@ -182,15 +182,15 @@ Go to **[http://confluence-cluster-612-lb:50612/](http://confluence-cluster-612-
 
 First login as `admin` with password `admin`.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/19.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/19.png?v2" width="80%"/></p>
 
 Now you should see a message to **correct the baseUrl**. 
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/20.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/20.png?v2" width="80%"/></p>
 
 Change the baseUrl to `http://confluence-cluster-612-lb:50612`.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/21.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/21.png?v2" width="80%"/></p>
 
 
 
@@ -201,11 +201,11 @@ Change the baseUrl to `http://confluence-cluster-612-lb:50612`.
 
 Now enable Collaborative editing under 'Administration' → 'Collaborative editing'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/40.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/40.png?v2" width="80%"/></p>
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/41.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/41.png?v2" width="80%"/></p>
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/42.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/42.png?v2" width="80%"/></p>
 
 &nbsp;
 
@@ -221,11 +221,11 @@ This will **add two additional Confluence® Nodes** and reconfigure the loadbala
 
 Wait again several minutes and now check if all nodes are active and alive under 'Administration' → 'Clustering'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/30.png?v4" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/30.png?v4" width="80%"/></p>
 
 Run the **Healthcheck** under 'Administration' → 'Support Tools'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.1/img/post-config/50.png?v4" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/50.png?v4" width="80%"/></p>
 
 And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-612-lb:50612/synchrony/heartbeat](http://confluence-cluster-612-lb:50612/synchrony/heartbeat) and it should output `ok`.
 
