@@ -10,12 +10,13 @@ Please choose the Confluence version you want to run:
 
 |Confluence Version | Status | Loadbalancer URL | 3rdparty Versions |
 |-------------------|--------|------------|-----------------|
+| **⇨ [6.2.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.2.0)** | :white_check_mark:&nbsp;current | http://confluence-cluster-620-lb:50620/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.2.0/Dockerfile) |
 | **⇨ [6.1.2](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.2)** | :white_check_mark:&nbsp;current | http://confluence-cluster-612-lb:50612/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.2/Dockerfile) |
 | **⇨ [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.1)** | :red_circle:&nbsp;deprecated | http://confluence-cluster-611-lb:50611/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.1/Dockerfile) |
 
 
 **Please Note:**
- * I do not provide support. If you have questions on how to run Confluence and/or Confluence Data Center, please ask in the 
+ * I do not provide support. If you have questions on how to run Confluence and/or Confluence Data Center, please ask in the
 [Atlassian Community](https://community.atlassian.com/).
 
 -----
@@ -75,7 +76,7 @@ Now you can inspect the reports for further information.
 ### Trademarks and Third Party Licenses
 
  * **Atlassian Confluence®**
-   * Atlassian® and Confluence® are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark). 
+   * Atlassian® and Confluence® are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
    * Please check yourself for corresponding Licenses and Terms of Use at [atlassian.com](https://atlassian.com).
  * **Oracle Java JDK 8**
    * Oracle and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
@@ -90,7 +91,7 @@ Now you can inspect the reports for further information.
    * Ubuntu and Canonical are registered [trademarks of Canonical Ltd.](https://www.ubuntu.com/legal/short-terms)
  * **Apple**
    * macOS®, Mac and OS X are [trademarks of Apple Inc.](http://www.apple.com/legal/intellectual-property/trademark/appletmlist.html), registered in the U.S. and other countries.
-   
+
 -----
 
 &nbsp;
