@@ -1,0 +1,38 @@
+{% set amountNodes = NODES | int %}
+<VirtualHost *:50631>
+    ServerName confluencecluster
+    <Proxy *>
+        Require all granted
+    </Proxy>
+    Header add Set-Cookie  "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/"  env=BALANCER_ROUTE_CHANGED
+
+    <Proxy balancer://confluence-synchrony-cluster>
+        {% for n in range(1, (amountNodes+1)) %}
+            BalancerMember http://confluence-cluster-631-node{{ n }}:8091 route={{ n }}
+        {% endfor %}
+    </Proxy>
+    <Proxy balancer://confluence-synchrony-cluster-ws>
+        {% for n in range(1, (amountNodes+1)) %}
+            BalancerMember ws://confluence-cluster-631-node{{ n }}:8091 route={{ n }}
+        {% endfor %}
+    </Proxy>
+    ProxyPass /synchrony   balancer://confluence-synchrony-cluster/synchrony  stickysession=ROUTEID
+    <Location /synchrony>
+        Require all granted
+        RewriteEngine on
+        RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
+        RewriteCond %{HTTP:CONNECTION} Upgrade$ [NC]
+        RewriteRule .* balancer://confluence-synchrony-cluster-ws%{REQUEST_URI} [P]
+    </Location>
+
+    <Proxy balancer://confluence-cluster>
+        {% for n in range(1, (amountNodes+1)) %}
+            BalancerMember http://confluence-cluster-631-node{{ n }}:8090 route={{ n }}
+        {% endfor %}
+    </Proxy>
+    ProxyPass /            balancer://confluence-cluster/                     stickysession=ROUTEID
+
+    ProxyPreserveHost on
+    ProxyRequests off
+    ProxyTimeout 9600
+</VirtualHost>
