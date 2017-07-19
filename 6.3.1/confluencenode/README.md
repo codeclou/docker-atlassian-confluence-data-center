@@ -108,12 +108,13 @@ vZZly0gpy2OcQDos/z9AhQ2Y5xxEvgexSFkmZX9XMn9HEMjIQ==X02gc
 EOF)
 
 docker rm confluence-node-init
+docker build -t confluencenode-init .
+
 docker run \
     -i -t \
     --name=confluence-node-init \
     --net=confluence-cluster-631 \
     --net-alias=confluence-node-init \
-    -v $(pwd):/work/ \
     -p 8090:8090 \
     -p 8091:8091 \
     -e NODE_NUMBER=1 \
