@@ -24,9 +24,9 @@ MANAGEMENT_SCRIPT_VERSION=2
 #
 ####################################################################################
 
-CONFLUENCE_VERSION="6.2.0"
-CONFLUENCE_VERSION_DOT_FREE="620"
-CONFLUENCE_LB_PUBLIC_PORT=50620
+CONFLUENCE_VERSION="6.3.1"
+CONFLUENCE_VERSION_DOT_FREE="631"
+CONFLUENCE_LB_PUBLIC_PORT=50631
 POSTGRESQL_VERSION="9.4"
 
 ####################################################################################
@@ -141,7 +141,7 @@ function start_instance_confluencenode {
         --net=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE} \
         --net-alias=confluence-cluster-${CONFLUENCE_VERSION_DOT_FREE}-node${1} \
         --env NODE_NUMBER=${1} \
-        --env CONFLUENCE_DATA_CENTER_LICENSE_620="$CONFLUENCE_DATA_CENTER_LICENSE_620" \
+        --env CONFLUENCE_DATA_CENTER_LICENSE_631="$CONFLUENCE_DATA_CENTER_LICENSE_631" \
         -v confluence-shared-home-${CONFLUENCE_VERSION_DOT_FREE}:/confluence-shared-home \
         -d codeclou/docker-atlassian-confluence-data-center:confluencenode-${CONFLUENCE_VERSION}
 }
@@ -262,9 +262,9 @@ function remove_all_dangling_confluencenodes {
 #
 #
 function check_if_license_env_var_is_set {
-    if [ -z "$CONFLUENCE_DATA_CENTER_LICENSE_620" ]
+    if [ -z "$CONFLUENCE_DATA_CENTER_LICENSE_631" ]
     then
-        echo -e $C_CYN">> license ............:${C_RST}${C_RED} ERROR${C_RST}     - license env var seems to not be set. Please set CONFLUENCE_DATA_CENTER_LICENSE_620"$C_RST
+        echo -e $C_CYN">> license ............:${C_RST}${C_RED} ERROR${C_RST}     - license env var seems to not be set. Please set CONFLUENCE_DATA_CENTER_LICENSE_631"$C_RST
         exit 1
     else
         echo -e $C_CYN">> license ............:${C_RST}${C_GRN} OK${C_RST}        - license env var seems to be set."$C_RST
@@ -503,6 +503,6 @@ then
     get_running_confluencenode_count running_confluencenode_count
     echo -e $C_CYN">> info ...............:${C_RST}${C_GRN} OK${C_RST}        - currently ${running_confluencenode_count} Confluence node(s) are running. Showing 'docker ps' for cluster:"$C_RST
     echo ""
-    docker ps --format '{{.ID}}\t {{.Names}}\t {{.Ports}}' --filter "name=confluence-cluster-620-*"
+    docker ps --format '{{.ID}}\t {{.Names}}\t {{.Ports}}' --filter "name=confluence-cluster-631-*"
     echo ""
 fi

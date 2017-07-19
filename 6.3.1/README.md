@@ -102,7 +102,7 @@ confluence-data-center/master/6.3.1/manage-confluence-cluster-6.3.1.sh"
 #
 # CHECK SHA SUM - Should output OK
 #
-echo "d33ec707e188ae8a3352cc7bac9882d63ee9425270deb94fb1638116b934b131  \
+echo "3bf3b803b4b6d4038da7ea428c6dcab6f1e61fb8c775b119618c852ed4017826  \
 /usr/local/bin/manage-confluence-cluster-6.3.1.sh" \
 > /usr/local/bin/manage-confluence-cluster-6.3.1.sh.sha256sum
 gsha256sum -c /usr/local/bin/manage-confluence-cluster-6.3.1.sh.sha256sum
