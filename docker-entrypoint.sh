@@ -68,7 +68,7 @@ then
   # NODE 2...n
   #
   echo ">> docker-entrypoint: syncing confluence home from node1 ... please wait ..."
-  curl --fail -o /tmp/confluence-home.tar  http://confluence-cluster-640-node1:8888/download
+  curl --connect-timeout 180 --max-time 180 --fail -o /tmp/confluence-home.tar  http://confluence-cluster-640-node1:8888/download
   tar xfv /tmp/confluence-home.tar -C /
   chown -R worker:worker /confluence-home
 else
