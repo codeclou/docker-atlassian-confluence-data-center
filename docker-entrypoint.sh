@@ -26,7 +26,8 @@ export LB_PORT="50640"
 # SYNCHRONY VARS
 #
 export PATH_TO_SYNCHRONY_STANDALONE_JAR="/confluence/atlassian-confluence-latest/confluence/WEB-INF/packages/synchrony-standalone.jar"
-export JDBC_DRIVER_PATH="/confluence/atlassian-confluence-latest/confluence/WEB-INF/lib/postgresql-9.4.1212.jar"
+POSTGRESQL_JAR_FILE=$(ls /confluence/atlassian-confluence-latest/confluence/WEB-INF/lib/ | grep postgres)
+export JDBC_DRIVER_PATH="/confluence/atlassian-confluence-latest/confluence/WEB-INF/lib/"$POSTGRESQL_JAR_FILE
 export SYNCHRONY_PORT="8091"
 export CLUSTER_LISTEN_PORT="5701"
 export CLUSTER_BASE_PORT="25500"
@@ -51,5 +52,11 @@ echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/
 sed -i -e "s/port=\"8090\"/port=\"8090\" proxyName=\"${LB_NAME}\" proxyPort=\"${LB_PORT}\" scheme=\"http\"/g" /confluence/atlassian-confluence-latest/conf/server.xml
 
 
+#
+# START SYNCHRONY
+#
+echo ">> docker-entrypoint: starting synchrony"
+env | j2 --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
+bash /work-private/run-synchrony-jar.sh
 
 exec "$@"
