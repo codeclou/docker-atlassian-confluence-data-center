@@ -164,6 +164,17 @@ Go to **[http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/02-addons.png" /></p>
 
+:bangbang: Enter the [3 hour Time Bomb License](https://developer.atlassian.com/platform/marketplace/timebomb-licenses-for-testing-server-apps/)
+
+```
+AAABCQ0ODAoPeNpdUNFOg0AQfO9XkPhMc2Bs0yaXSMsl2iAQqa2v67noJbA0dwexf+/Joal9nZmd2
+ZmbI74HO6AgZgFbrdntOl4GiUj3DogWM9lRPd92ZEFa8QSq4R3hAA0oQroH24AxCmguu9ZrnU4Ny
+K3u0QMlaEuoc2iReyQFC1ski/pClimJZHB/PuEoTcVBZEUpnj1d6A8gZcCqjnjyG+s54f7pPVNDY
+yZD96yLICCJ4uuk9NnFIi+X8cOsQj2gfkz5plrchYd8JcJqc0zC12qX+eO8b99QF/WLQW14xBiby
+vRafoLB0etnoJBFYcz+VbhOu5xwrFY0jQryvxUngcaxwrXzN27wjQkwLQIUe9x9vLLNd9fUle/0U
+O/G3mT4j6UCFQCDPOxJITv6OhbghOtduVBMsvVfGg==X02dl
+```
+
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/03-license.png" /></p>
 
 Use `/confluence-cluster-home` as Shared-Home and use `230.0.0.1` as MultiCast IP-Address.
