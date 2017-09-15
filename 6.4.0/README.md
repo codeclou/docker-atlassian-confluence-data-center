@@ -29,8 +29,11 @@ It basically works in the following way:
     * Binds Port 50640/tcp to the host.
   * It creates a docker container called `confluence-cluster-640-db` as the database.
     * Port 5432/tcp are only exposed inside the `confluence-cluster-640` network.
-  * It creates multiple docker containers called `confluence-cluster-640-node{n}` as Confluence instances.
-    * With `n ∈ {1,2,3,...,100}`.
+  * It creates one docker containers called `confluence-cluster-640-node1` as Confluence instance.
+    * This node runs a special endpoint on Port 8888/tcp which provides on the fly download of `/confluence-home`. Which is needed when starting additional nodes2...n.
+    * It also runs Confluence and Synchrony which is specified below.
+  * On Scale-out: It creates multiple docker containers called `confluence-cluster-640-node{n}` as Confluence instances.
+    * With `n ∈ {2,3,4,...,100}`.
     * An instance runs [Confluence](https://confluence.atlassian.com/doc/confluence-server-documentation-135922.html) on Port 8090/tcp and [Synchrony](https://confluence.atlassian.com/doc/administering-collaborative-editing-858772086.html) on Port 8091/tcp.
     * Ports 8090,8091/tcp and the multicast Ports 25500,5701/tcp are only exposed inside the `confluence-cluster-640` network.
 
