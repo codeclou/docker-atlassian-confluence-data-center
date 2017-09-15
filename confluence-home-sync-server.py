@@ -10,7 +10,7 @@ import subprocess
 
 @route('/download')
 def index():
-    p = subprocess.Popen('tar cfv /work-private/confluence-home.tar /confluence-home/', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p = subprocess.Popen('tar cf /work-private/confluence-home.tar /confluence-home/bundled-plugins /confluence-home/confluence.cfg.xml /confluence-home/index /confluence-home/journal /confluence-home/synchrony-standalone.jar', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     retval = p.wait()
     return static_file('confluence-home.tar', root='/work-private')
 
