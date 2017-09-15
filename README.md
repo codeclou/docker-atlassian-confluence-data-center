@@ -10,10 +10,7 @@ Please choose the Confluence version you want to run:
 
 |Confluence Version | Status | Loadbalancer URL | 3rdparty Versions |
 |-------------------|--------|------------|-----------------|
-| **⇨ [6.3.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.3.1)** | :white_check_mark:&nbsp;current | http://confluence-cluster-631-lb:50631/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.3.1/Dockerfile) |
-| **⇨ [6.2.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.2.0)** | :white_check_mark:&nbsp;current | http://confluence-cluster-620-lb:50620/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.2.0/Dockerfile) |
-| **⇨ [6.1.2](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.2)** | :white_check_mark:&nbsp;current | http://confluence-cluster-612-lb:50612/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.2/Dockerfile) |
-| **⇨ [6.1.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.1.1)** | :red_circle:&nbsp;deprecated | http://confluence-cluster-611-lb:50611/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u131](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.1.1/Dockerfile) |
+| **⇨ [6.4.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.4.0)** | :white_check_mark:&nbsp;current | http://confluence-cluster-640-lb:50640/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
 
 
 **Please Note:**
