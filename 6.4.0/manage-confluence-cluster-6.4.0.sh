@@ -436,6 +436,9 @@ then
     update_check
     echo ""
 
+    pull_latest_images
+    echo ""
+
     running_confluencenode_count=0
     get_running_confluencenode_count running_confluencenode_count
     if (( running_confluencenode_count > 0 )) # arithmetic brackets ... woohoo
@@ -451,6 +454,7 @@ then
         echo ""
 
         kill_instance_loadbalancer
+        sleep 2
         start_instance_loadbalancer $SCALE
         echo ""
     else

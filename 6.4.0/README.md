@@ -58,6 +58,7 @@ The basic setup is as follows:
  * Basic unix-tools like `wc`, `awk`, `curl`, `tr`, `head` and `bash` must be installed.
  * Bash 3 or 4 must be installed.
  * Latest Docker version must be installed.
+ * :bangbang: Give Docker at least 8GB of RAM
 
 -----
 
@@ -234,19 +235,17 @@ When you edit a page now, you will see that Collaborative editing is working.
 
 **(6) Scale Up Cluster - Add Confluence® Nodes**
 
-:bangbang: SCALE OUT CURRENTLY DOES NOT WORK :bangbang:
-
 Now that our first Confluence® Node is fully working we add additional nodes to our existing cluster.
 
 ```bash
 manage-confluence-cluster-6.4.0.sh --action update --scale 3
 ```
 
-This will **add two additional Confluence® Nodes** and reconfigure the loadbalancer automatically.
+This will **add two additional Confluence® Nodes** and reconfigure the loadbalancer automatically. The nodes are created, and the confluence-home directory from node1 is copied to the node2...n nodes.
 
 Wait again several minutes and now check if all nodes are active and alive under 'Administration' → 'Clustering'.
 
-<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/41-cluster-one-node-running.png" /></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/41-cluster-one-node-running.png?v2" /></p>
 
 Run the **Healthcheck** under 'Administration' → 'Support Tools'.
 
