@@ -52,3 +52,15 @@ docker run \
 ```
 
 Goto http://confluence-cluster-640-lb:50640/
+
+use the following values during install:
+
+  * Database
+    * `confluence-cluster-640-db` as postgresql hostname
+    * `confluence` as user and password
+  * MultiCast IP
+    * `230.0.0.1`
+  * Confluence Shared Home
+    * `/confluence-shared-home`
+  * Cluster Name
+    * `confluence-cluster`
