@@ -59,4 +59,24 @@ echo ">> docker-entrypoint: starting synchrony"
 env | j2 --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
 bash /work-private/run-synchrony-jar.sh
 
+#
+# CONFLUENCE-HOME SYNC ON NODE CREATION
+#
+if [[ "${NODE_NUMBER}" != "1" ]]
+then
+  #
+  # NODE 2...n
+  #
+  echo ">> docker-entrypoint: syncing confluence home from node1 ... please wait ..."
+  curl --fail -o /tmp/confluence-home.tar  http://confluence-cluster-640-node1:8888/download
+  tar xfv /tmp/confluence-home.tar -C /
+  chown -R worker:worker /confluence-home
+else
+  #
+  # NODE 1
+  #
+  echo ">> docker-entrypoint: starting confluence home sync server on port 8888"
+  python /work-private/confluence-home-sync-server.py &
+fi
+
 exec "$@"

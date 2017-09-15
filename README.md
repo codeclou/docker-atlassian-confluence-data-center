@@ -4,7 +4,7 @@ See master branch readme.
 
 &nbsp;
 
-### Test Setup (manual locally)
+### Test Cluster with one node (manual locally)
 
 ```
 #
@@ -46,6 +46,7 @@ docker run \
     --name=confluence-cluster-640-node1 \
     --net=confluence-cluster-640 \
     --net-alias=confluence-cluster-640-node1 \
+    -e NODE_NUMBER=1 \
     c640 bash
 # run
     /confluence/atlassian-confluence-latest/bin/catalina.sh run
@@ -64,3 +65,23 @@ use the following values during install:
    * `/confluence-shared-home`
  * Cluster Name
    * `confluence-cluster`
+
+&nbsp;
+
+### Test Cluster add second node (manual locally)
+
+The node1 starts a special Endpoint which enables us to download the `/confluence-home`
+of node1 on the fly during creation of nodeN. See `confluence-home-sync-server.py` which runs on Port 8888 of node1.
+
+```
+docker run \
+    -i -t \
+    --rm \
+    --name=confluence-cluster-640-node2 \
+    --net=confluence-cluster-640 \
+    --net-alias=confluence-cluster-640-node2 \
+    -e NODE_NUMBER=2 \
+    c640 bash
+# run
+    /confluence/atlassian-confluence-latest/bin/catalina.sh run
+```

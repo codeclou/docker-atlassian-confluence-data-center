@@ -2,6 +2,12 @@ FROM codeclou/docker-atlassian-base-images:confluence-6.4.0
 # See: https://github.com/codeclou/docker-atlassian-base-images
 
 #
+# CONFLUENCE HOME SYNC SERVER
+#
+RUN pip install bottle
+COPY confluence-home-sync-server.py /work-private/confluence-home-sync-server.py
+
+#
 # FILES
 #
 COPY run-synchrony-jar.sh.jinja2 /work-private/run-synchrony-jar.sh.jinja2
@@ -20,6 +26,8 @@ EXPOSE 8091
 EXPOSE 5801
 EXPOSE 5701
 EXPOSE 25500
+# Home Dir Sync Server
+EXPOSE 8888
 
 #
 # RUN
