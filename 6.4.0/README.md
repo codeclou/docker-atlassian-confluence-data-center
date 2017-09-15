@@ -160,11 +160,45 @@ Once the cluster is fully started up, you need to configure Confluence® Data Ce
 
 Go to **[http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-lb:50640/)** and make sure you enabled cookies in your Browser (sticky session).
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/01-production-installation.png?v2" width="80%"/></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/01-production-installation.png?v2" /></p>
 
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/02-addons.png" /></p>
 
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/03-license.png" /></p>
 
+Use `/confluence-cluster-home` as Shared-Home and use `230.0.0.1` as MultiCast IP-Address.
 
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/04-cluster-config.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/05-database.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/06-database-postgres-select.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/07-database-direct-jdbc.png" /></p>
+
+Use `confluence-cluster-640-db` as Servername and `confluence` as username and password.
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/08-database-postgres-config.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/09-empty-site.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/10-manage-users-with-confluence.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/11-create-admin-user.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/12-setup-done.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/13-skip-intro.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/14-skip-profile-pic.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/15-create-space.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/16-skip-tutorial.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/17-create-test-page.png" /></p>
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/18-install-cluster-node1-done.png" /></p>
 
 &nbsp;
 
@@ -172,15 +206,21 @@ Go to **[http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-
 
 Now enable Collaborative editing under 'Administration' → 'Collaborative editing'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/40.png?v2" width="80%"/></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/30-synchrony-change-mode.png" /></p>
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/41.png?v2" width="80%"/></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/31-synchrony-change-mode-confirm.png" /></p>
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/42.png?v2" width="80%"/></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/32-synchrony-running.png" /></p>
+
+When you edit a page now, you will see that Collaborative editing is working.
+
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/33-synchrony-edit-page-working.png" /></p>
 
 &nbsp;
 
 **(6) Scale Up Cluster - Add Confluence® Nodes**
+
+:bangbang: SCALE OUT CURRENTLY DOES NOT WORK :bangbang:
 
 Now that our first Confluence® Node is fully working we add additional nodes to our existing cluster.
 
@@ -192,11 +232,11 @@ This will **add two additional Confluence® Nodes** and reconfigure the loadbala
 
 Wait again several minutes and now check if all nodes are active and alive under 'Administration' → 'Clustering'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/30.png?v4" width="80%"/></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/41-cluster-one-node-running.png" /></p>
 
 Run the **Healthcheck** under 'Administration' → 'Support Tools'.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/50.png?v4" width="80%"/></p>
+<p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/40-health-support-tools-check.png" /></p>
 
 And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-640-lb:50640/synchrony/heartbeat](http://confluence-cluster-640-lb:50640/synchrony/heartbeat) and it should output `ok`.
 
