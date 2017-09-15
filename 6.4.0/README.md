@@ -12,7 +12,7 @@ It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 
 
 &nbsp;
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/img/doc/demo.gif" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/demo.gif?v2" width="80%"/></p>
 
 -----
 
@@ -42,7 +42,7 @@ The script is meant to follow the convention over configuration paradigma, there
 
 The basic setup is as follows:
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/img/doc/setup-structure.png?v6" width="95%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/setup-structure.png?v6" width="95%"/></p>
 
 -----
 
@@ -160,7 +160,7 @@ Once the cluster is fully started up, you need to configure Confluence® Data Ce
 
 Go to **[http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-lb:50640/)** and make sure you enabled cookies in your Browser (sticky session).
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/img/post-config/19.png?v2" width="80%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/01-production-installation.png?v2" width="80%"/></p>
 
 
 
