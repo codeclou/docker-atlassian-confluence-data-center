@@ -51,16 +51,5 @@ echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/
 sed -i -e "s/port=\"8090\"/port=\"8090\" proxyName=\"${LB_NAME}\" proxyPort=\"${LB_PORT}\" scheme=\"http\"/g" /confluence/atlassian-confluence-latest/conf/server.xml
 
 
-if [ "$INIT" == "false" ]
-then
-
-    #
-    # START SYNCHRONY
-    #
-    #echo ">> docker-entrypoint: starting synchrony"
-    #env | j2 --format=env /work-private/run-synchrony-jar.sh.jinja2 > /work-private/run-synchrony-jar.sh
-    #bash /work-private/run-synchrony-jar.sh
-
-fi
 
 exec "$@"
