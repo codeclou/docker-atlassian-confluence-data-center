@@ -180,7 +180,7 @@ O/G3mT4j6UCFQCDPOxJITv6OhbghOtduVBMsvVfGg==X02dl
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/03-license.png" /></p>
 
-Use `/confluence-cluster-home` as Shared-Home and use `230.0.0.1` as MultiCast IP-Address.
+Use `/confluence-shared-home` as Shared-Home and use `230.0.0.1` as MultiCast IP-Address.
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/04-cluster-config.png" /></p>
 
