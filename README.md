@@ -1,2 +1,3 @@
-# docker-atlassian-confluence-data-center
-docker-atlassian-confluence-data-center
+# Confluence Node
+
+work in progress
