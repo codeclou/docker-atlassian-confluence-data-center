@@ -156,23 +156,12 @@ docker logs confluence-cluster-640-node1
 
 **(4) Start Post Configuration**
 
-
-
 Once the cluster is fully started up, you need to configure Confluence® Data Center in the browser.
 
 Go to **[http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-lb:50640/)** and make sure you enabled cookies in your Browser (sticky session).
 
-First login as `admin` with password `admin`.
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/img/post-config/19.png?v2" width="80%"/></p>
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/19.png?v2" width="80%"/></p>
-
-Now you should see a message to **correct the baseUrl**.
-
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/20.png?v2" width="80%"/></p>
-
-Change the baseUrl to `http://confluence-cluster-640-lb:50640`.
-
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/6.1.2/img/post-config/21.png?v2" width="80%"/></p>
 
 
 

@@ -436,9 +436,6 @@ then
     update_check
     echo ""
 
-    check_if_license_env_var_is_set
-    echo ""
-
     running_confluencenode_count=0
     get_running_confluencenode_count running_confluencenode_count
     if (( running_confluencenode_count > 0 )) # arithmetic brackets ... woohoo
