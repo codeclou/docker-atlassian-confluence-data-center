@@ -10,16 +10,16 @@ See master branch readme.
 #
 # NETWORK
 #
-docker network create confluence-cluster-640
+docker network create confluence-cluster-650
 
 #
 # DATABASE
 #
 docker run \
     --rm \
-    --name confluence-cluster-640-db \
-    --net=confluence-cluster-640 \
-    --net-alias=confluence-cluster-640-db \
+    --name confluence-cluster-650-db \
+    --net=confluence-cluster-650 \
+    --net-alias=confluence-cluster-650-db \
     -e POSTGRES_PASSWORD=confluence \
     -e POSTGRES_USER=confluence \
     -d postgres:9.4
@@ -29,35 +29,35 @@ docker run \
 #
 docker run \
     --rm \
-    --name confluence-cluster-640-lb \
-    --net=confluence-cluster-640 \
-    --net-alias=confluence-cluster-640-lb \
+    --name confluence-cluster-650-lb \
+    --net=confluence-cluster-650 \
+    --net-alias=confluence-cluster-650-lb \
     --env NODES=1 \
-    -p 50640:50640 \
-    -d codeclou/docker-atlassian-confluence-data-center:loadbalancer-6.4.0
+    -p 50650:50650 \
+    -d codeclou/docker-atlassian-confluence-data-center:loadbalancer-6.5.0
 
 #
 # CONFLUENCE NODE
 #
-docker build . -t c640
+docker build . -t c650
 docker run \
     -i -t \
     --rm \
-    --name=confluence-cluster-640-node1 \
-    --net=confluence-cluster-640 \
-    --net-alias=confluence-cluster-640-node1 \
+    --name=confluence-cluster-650-node1 \
+    --net=confluence-cluster-650 \
+    --net-alias=confluence-cluster-650-node1 \
     -e NODE_NUMBER=1 \
-    c640 bash
+    c650 bash
 # run
     /confluence/atlassian-confluence-latest/bin/catalina.sh run
 ```
 
-Goto http://confluence-cluster-640-lb:50640/
+Goto http://confluence-cluster-650-lb:50650/
 
 use the following values during install:
 
  * Database
-   * `confluence-cluster-640-db` as postgresql hostname
+   * `confluence-cluster-650-db` as postgresql hostname
    * `confluence` as user and password
  * MultiCast IP
    * `230.0.0.1`
@@ -77,11 +77,11 @@ of node1 on the fly during creation of nodeN. See `confluence-home-sync-server.p
 docker run \
     -i -t \
     --rm \
-    --name=confluence-cluster-640-node2 \
-    --net=confluence-cluster-640 \
-    --net-alias=confluence-cluster-640-node2 \
+    --name=confluence-cluster-650-node2 \
+    --net=confluence-cluster-650 \
+    --net-alias=confluence-cluster-650-node2 \
     -e NODE_NUMBER=2 \
-    c640 bash
+    c650 bash
 # run
     /confluence/atlassian-confluence-latest/bin/catalina.sh run
 ```
