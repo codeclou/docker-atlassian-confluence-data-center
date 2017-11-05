@@ -5,7 +5,7 @@
 [![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/manage-confluence-cluster-logo.svg)](https://github.com/codeclou/docker-atlassian-confluence-data-center)
 
 
-## Version 6.4.0
+## Version 6.5.0
 
 Start an [Atlassian Confluence® Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
 It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume. This is not meant to be used in production!
@@ -20,27 +20,27 @@ It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 
 
 ### Manage Cluster Script
 
-To start, scale, stop and destroy the cluster, the [`manage-confluence-cluster-6.4.0.sh`](https://github.com/codeclou/docker-atlassian-confluence-data-center/blob/master/6.4.0/manage-confluence-cluster-6.4.0.sh) script is provided.
+To start, scale, stop and destroy the cluster, the [`manage-confluence-cluster-6.5.0.sh`](https://github.com/codeclou/docker-atlassian-confluence-data-center/blob/master/6.5.0/manage-confluence-cluster-6.5.0.sh) script is provided.
 It basically works in the following way:
 
-  * It creates a docker bridge network called `confluence-cluster-640`.
-  * It creates a shared volume called `confluence-shared-home-640`.
-  * It creates a docker container called `confluence-cluster-640-lb` as the loadbalancer.
-    * Binds Port 50640/tcp to the host.
-  * It creates a docker container called `confluence-cluster-640-db` as the database.
-    * Port 5432/tcp are only exposed inside the `confluence-cluster-640` network.
-  * It creates one docker containers called `confluence-cluster-640-node1` as Confluence instance.
+  * It creates a docker bridge network called `confluence-cluster-650`.
+  * It creates a shared volume called `confluence-shared-home-650`.
+  * It creates a docker container called `confluence-cluster-650-lb` as the loadbalancer.
+    * Binds Port 50650/tcp to the host.
+  * It creates a docker container called `confluence-cluster-650-db` as the database.
+    * Port 5432/tcp are only exposed inside the `confluence-cluster-650` network.
+  * It creates one docker containers called `confluence-cluster-650-node1` as Confluence instance.
     * This node runs a special endpoint on Port 8888/tcp which provides on the fly download of `/confluence-home`. Which is needed when starting additional nodes2...n.
     * It also runs Confluence and Synchrony which is specified below.
-  * On Scale-out: It creates multiple docker containers called `confluence-cluster-640-node{n}` as Confluence instances.
+  * On Scale-out: It creates multiple docker containers called `confluence-cluster-650-node{n}` as Confluence instances.
     * With `n ∈ {2,3,4,...,100}`.
     * An instance runs [Confluence](https://confluence.atlassian.com/doc/confluence-server-documentation-135922.html) on Port 8090/tcp and [Synchrony](https://confluence.atlassian.com/doc/administering-collaborative-editing-858772086.html) on Port 8091/tcp.
-    * Ports 8090,8091/tcp and the multicast Ports 25500,5701/tcp are only exposed inside the `confluence-cluster-640` network.
+    * Ports 8090,8091/tcp and the multicast Ports 25500,5701/tcp are only exposed inside the `confluence-cluster-650` network.
 
 The script is meant to follow the convention over configuration paradigma, therefore there is not much to be configured, except two things:
 
-  * It relies on the hostname `confluence-cluster-640-lb` pointing to the interface which binds 50640/tcp.
-  * It relies on the env variable `CONFLUENCE_DATA_CENTER_LICENSE_640` to contain a valid Confluence Data Center license.
+  * It relies on the hostname `confluence-cluster-650-lb` pointing to the interface which binds 50650/tcp.
+  * It relies on the env variable `CONFLUENCE_DATA_CENTER_LICENSE_650` to contain a valid Confluence Data Center license.
 
 
 The basic setup is as follows:
@@ -72,7 +72,7 @@ Add the alias on your Docker-Host machine.
 
 ```bash
 sudo su
-echo "127.0.0.1  confluence-cluster-640-lb" >> /etc/hosts
+echo "127.0.0.1  confluence-cluster-650-lb" >> /etc/hosts
 ```
 If you like to work with your cluster from your local network, use the servers public IP instead.
 
@@ -98,14 +98,14 @@ On macOS® you do this with:
 #
 # DOWNLOAD MANAGEMENT SCRIPT
 #
-curl -so /usr/local/bin/manage-confluence-cluster-6.4.0.sh \
+curl -so /usr/local/bin/manage-confluence-cluster-6.5.0.sh \
 "https://raw.githubusercontent.com/codeclou/docker-atlassian-\
-confluence-data-center/master/6.4.0/manage-confluence-cluster-6.4.0.sh"
+confluence-data-center/master/6.5.0/manage-confluence-cluster-6.5.0.sh"
 
 #
 # MAKE EXECUTABLE
 #
-chmod +x /usr/local/bin/manage-confluence-cluster-6.4.0.sh
+chmod +x /usr/local/bin/manage-confluence-cluster-6.5.0.sh
 ```
 
 
@@ -115,10 +115,10 @@ chmod +x /usr/local/bin/manage-confluence-cluster-6.4.0.sh
 
 ### Usage
 
-**(1) Start a Confluence® Data Center 6.4.0 Cluster**
+**(1) Start a Confluence® Data Center 6.5.0 Cluster**
 
 ```bash
-manage-confluence-cluster-6.4.0.sh --action create --scale 1
+manage-confluence-cluster-6.5.0.sh --action create --scale 1
 ```
 
  * Start one node at first and later scale up the cluster!
@@ -128,7 +128,7 @@ manage-confluence-cluster-6.4.0.sh --action create --scale 1
 
 **(2) Browse to Confluence® Data Center**
 
- * Open a browser to [http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-lb:50640/)
+ * Open a browser to [http://confluence-cluster-650-lb:50650/](http://confluence-cluster-650-lb:50650/)
  * It might take several minutes for the cluster to fully start up.
 
 &nbsp;
@@ -138,21 +138,21 @@ manage-confluence-cluster-6.4.0.sh --action create --scale 1
 Check if all containers have started with:
 
 ```bash
-manage-confluence-cluster-6.4.0.sh --action info
+manage-confluence-cluster-6.5.0.sh --action info
 ```
 
-Should show something like so. If `confluence-cluster-640-node1` does not show up, then re-run the create cluster command!
+Should show something like so. If `confluence-cluster-650-node1` does not show up, then re-run the create cluster command!
 
 ```
-373f159568f4    confluence-cluster-640-lb      0.0.0.0:50640->50640/tcp
-816c1c17a821    confluence-cluster-640-node1   5701/tcp, 5801/tcp, 8090-8091/tcp, 25500/tcp
-38575aee0e9d    confluence-cluster-640-db      5432/tcp
+373f159568f4    confluence-cluster-650-lb      0.0.0.0:50650->50650/tcp
+816c1c17a821    confluence-cluster-650-node1   5701/tcp, 5801/tcp, 8090-8091/tcp, 25500/tcp
+38575aee0e9d    confluence-cluster-650-db      5432/tcp
 ```
 
 You can check the logs of each container by calling e.g.:
 
 ```bash
-docker logs confluence-cluster-640-node1
+docker logs confluence-cluster-650-node1
 ```
 
 
@@ -162,7 +162,7 @@ docker logs confluence-cluster-640-node1
 
 Once the cluster is fully started up, you need to configure Confluence® Data Center in the browser.
 
-Go to **[http://confluence-cluster-640-lb:50640/](http://confluence-cluster-640-lb:50640/)** and make sure you enabled cookies in your Browser (sticky session).
+Go to **[http://confluence-cluster-650-lb:50650/](http://confluence-cluster-650-lb:50650/)** and make sure you enabled cookies in your Browser (sticky session).
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/01-production-installation.png?v2" /></p>
 
@@ -191,7 +191,7 @@ Use `/confluence-shared-home` as Shared-Home and use `230.0.0.1` as MultiCast IP
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/07-database-direct-jdbc.png" /></p>
 
-Use `confluence-cluster-640-db` as Servername and `confluence` as username and password.
+Use `confluence-cluster-650-db` as Servername and `confluence` as username and password.
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/08-database-postgres-config.png" /></p>
 
@@ -238,7 +238,7 @@ When you edit a page now, you will see that Collaborative editing is working.
 Now that our first Confluence® Node is fully working we add additional nodes to our existing cluster.
 
 ```bash
-manage-confluence-cluster-6.4.0.sh --action update --scale 3
+manage-confluence-cluster-6.5.0.sh --action update --scale 3
 ```
 
 This will **add two additional Confluence® Nodes** and reconfigure the loadbalancer automatically. The nodes are created, and the confluence-home directory from node1 is copied to the node2...n nodes.
@@ -251,14 +251,14 @@ Run the **Healthcheck** under 'Administration' → 'Support Tools'.
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/40-health-support-tools-check.png" /></p>
 
-And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-640-lb:50640/synchrony/heartbeat](http://confluence-cluster-640-lb:50640/synchrony/heartbeat) and it should output `ok`.
+And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-650-lb:50650/synchrony/heartbeat](http://confluence-cluster-650-lb:50650/synchrony/heartbeat) and it should output `ok`.
 
 If not all nodes you have started are active, try restarting all nodes not showing up.
 
 For example if Instance 3 does not show up, you can restart it like so:
 
 ```bash
-manage-confluence-cluster-6.4.0.sh --action restart-node --id 3
+manage-confluence-cluster-6.5.0.sh --action restart-node --id 3
 ```
 
 Your cluster works perfectly now.
@@ -268,7 +268,7 @@ Your cluster works perfectly now.
 **(6) Shutting down the cluster**
 
 ```bash
-manage-confluence-cluster-6.4.0.sh --action destroy
+manage-confluence-cluster-6.5.0.sh --action destroy
 ```
 
 This will kill and remove all instances.
