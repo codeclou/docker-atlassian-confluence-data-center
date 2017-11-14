@@ -41,6 +41,7 @@ export SYNCHRONY_URL="http://confluence-cluster-650-lb:50650/synchrony"
 NODE_ID="node${NODE_NUMBER}"
 sed -i -e "s/export CATALINA_OPTS/#replaced/g" /confluence/atlassian-confluence-latest/bin/setenv.sh
 echo -e "CATALINA_OPTS=\"-Dconfluence.cluster.node.name=${NODE_ID} \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
+echo -e "CATALINA_OPTS=\"-Datlassian.darkfeature.confluence.onboarding.bypass=true \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 echo -e "CATALINA_OPTS=\"-Dsynchrony.service.url=http://confluence-cluster-650-lb:50650/synchrony/v1 \${CATALINA_OPTS}\"\n" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 echo -e "\nexport CATALINA_OPTS" >> /confluence/atlassian-confluence-latest/bin/setenv.sh
 
