@@ -10,6 +10,7 @@ Please choose the Confluence version you want to run:
 
 |Confluence Version | Status | Loadbalancer URL | 3rdparty Versions |
 |-------------------|--------|------------|-----------------|
+| **⇨ [6.6.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.6.0)** | :white_check_mark:&nbsp;current | http://confluence-cluster-660-lb:50660/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.6.0/Dockerfile)
 | **⇨ [6.5.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.5.0)** | :white_check_mark:&nbsp;current | http://confluence-cluster-650-lb:50650/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
 | **⇨ [6.4.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.4.0)** | :white_check_mark:&nbsp;current | http://confluence-cluster-640-lb:50640/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
 
