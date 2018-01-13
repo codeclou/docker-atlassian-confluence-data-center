@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for f in manage-confluence-cluster-6.6.0.sh
+for f in manage-confluence-cluster-6.6.0.sh README.md
 do
   echo "Replacing version in $f"
   sed -i .bak 's/6\.5\.0/6.6.0/g' $f
