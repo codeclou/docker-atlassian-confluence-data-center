@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# NOTE THAT THERE HAS TO BE AN EXISTING BASE-IMAGE FOR A NEW VERSION!
+# SEE: https://github.com/codeclou/docker-atlassian-base-images
+#
+
 ####################################################################################
 # MIT License
 # Copyright (c) 2018 Bernhard Grünewaldt
@@ -77,14 +82,31 @@ echo -e $C_GRN"   rename manage-confluence-cluster-${LAST_VERSION}.sh to manage-
 mv ./${NEW_VERSION}/manage-confluence-cluster-${LAST_VERSION}-version.txt ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}-version.txt
 echo -e $C_GRN"   rename manage-confluence-cluster-${LAST_VERSION}-version.txt to manage-confluence-cluster-${NEW_VERSION}-version.txt${C_RST}"
 
-
-#mv ./${NEW_VERSION}/manage-confluence-cluster-${LAST_VERSION}.sh ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh
-#echo -e $C_GRN"   replace ${LAST_VERSION} by ${NEW_VERSION} in manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
-
-sed -i .bak "s/${LAST_VERSION//[.]/\.}/${NEW_VERSION}/g" ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh && rm -f *.bak
+sed -i .bak "s/${LAST_VERSION}/${NEW_VERSION}/g" ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh && rm -f ./${NEW_VERSION}/*.bak
 echo -e $C_GRN"   replace ${LAST_VERSION} by ${NEW_VERSION} in manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
+sed -i .bak "s/${LAST_VERSION}/${NEW_VERSION}/g" ./${NEW_VERSION}/README.md && rm -f ./${NEW_VERSION}/*.bak
+echo -e $C_GRN"   replace ${LAST_VERSION} by ${NEW_VERSION} in README.md${C_RST}"
 
-#  echo "Replacing version in $f"
-#  sed -i .bak 's/6\.5\.0/6.6.0/g' $f
-#  sed -i .bak 's/650/660/g' $f
-#rm -f *.bak
+sed -i .bak "s/${LAST_VERSION_NO_DOTS}/${NEW_VERSION_NO_DOTS}/g" ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh && rm -f ./${NEW_VERSION}/*.bak
+echo -e $C_GRN"   replace ${LAST_VERSION_NO_DOTS} by ${NEW_VERSION_NO_DOTS} in manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
+sed -i .bak "s/${LAST_VERSION_NO_DOTS}/${NEW_VERSION_NO_DOTS}/g" ./${NEW_VERSION}/README.md && rm -f ./${NEW_VERSION}/*.bak
+echo -e $C_GRN"   replace ${LAST_VERSION_NO_DOTS} by ${NEW_VERSION_NO_DOTS} in README.md${C_RST}"
+
+echo ""
+
+
+####################################################################################
+#
+# COPY CONFLUENCE-NODE BRANCH
+#
+####################################################################################
+echo -e $C_CYN">> trying to clone confluencenode-${LAST_VERSION} branch${C_RST}"
+git checkout confluencenode-${LAST_VERSION} > /dev/null 2>&1
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$current_branch" == "confluencenode-${LAST_VERSION}" ]
+then
+  echo -e $C_GRN"   we are on confluencenode-${LAST_VERSION} branch ...${C_RST}"
+else
+  echo -e $C_RED"   we are NOT on confluencenode-${LAST_VERSION} branch. EXIT${C_RST}"
+  exit 1
+fi
