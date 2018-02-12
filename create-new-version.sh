@@ -57,7 +57,7 @@ echo ""
 #
 ####################################################################################
 echo -e $C_CYN">> trying to clone management scripts on master branch${C_RST}"
-git checkout master > /dev/null
+git checkout master > /dev/null 2>&1
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 if [ "$current_branch" == "master" ]
 then
