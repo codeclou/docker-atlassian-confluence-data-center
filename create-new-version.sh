@@ -53,7 +53,7 @@ echo ""
 
 ####################################################################################
 #
-# COPY MASTER BRANCH
+# COPY MASTER BRANCH MANAGEMENT SCRIPTS
 #
 ####################################################################################
 echo -e $C_CYN">> trying to clone management scripts on master branch${C_RST}"
@@ -66,3 +66,19 @@ else
   echo -e $C_RED"   we are NOT on master branch. EXIT${C_RST}"
   exit 1
 fi
+
+
+cp -r ${LAST_VERSION} ${NEW_VERSION}
+echo -e $C_GRN"   copy ./${LAST_VERSION}/ to ./${NEW_VERSION}/${C_RST}"
+
+mv ./${NEW_VERSION}/manage-confluence-cluster-${LAST_VERSION}.sh ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh
+echo -e $C_GRN"   rename manage-confluence-cluster-${LAST_VERSION}.sh to manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
+
+mv ./${NEW_VERSION}/manage-confluence-cluster-${LAST_VERSION}-version.txt ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}-version.txt
+echo -e $C_GRN"   rename manage-confluence-cluster-${LAST_VERSION}-version.txt to manage-confluence-cluster-${NEW_VERSION}-version.txt${C_RST}"
+
+
+#  echo "Replacing version in $f"
+#  sed -i .bak 's/6\.5\.0/6.6.0/g' $f
+#  sed -i .bak 's/650/660/g' $f
+#rm -f *.bak
