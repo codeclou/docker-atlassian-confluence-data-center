@@ -1,9 +1,6 @@
 #!/bin/bash
 
-#
-# NOTE THAT THERE HAS TO BE AN EXISTING BASE-IMAGE FOR A NEW VERSION!
-# SEE: https://github.com/codeclou/docker-atlassian-base-images
-#
+# USAGE SEE README_CREATE_NEW_VERSION.md
 
 ####################################################################################
 # MIT License
@@ -91,6 +88,12 @@ sed -i .bak "s/${LAST_VERSION_NO_DOTS}/${NEW_VERSION_NO_DOTS}/g" ./${NEW_VERSION
 echo -e $C_GRN"   replace ${LAST_VERSION_NO_DOTS} by ${NEW_VERSION_NO_DOTS} in manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
 sed -i .bak "s/${LAST_VERSION_NO_DOTS}/${NEW_VERSION_NO_DOTS}/g" ./${NEW_VERSION}/README.md && rm -f ./${NEW_VERSION}/*.bak
 echo -e $C_GRN"   replace ${LAST_VERSION_NO_DOTS} by ${NEW_VERSION_NO_DOTS} in README.md${C_RST}"
+
+
+git add ./${NEW_VERSION}
+git commit -m "automated creation of version ${NEW_VERSION}"
+git push
+echo -e $C_GRN"   adding new files and pushing to GitHub"
 
 echo ""
 
