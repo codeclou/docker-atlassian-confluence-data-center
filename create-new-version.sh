@@ -78,6 +78,12 @@ mv ./${NEW_VERSION}/manage-confluence-cluster-${LAST_VERSION}-version.txt ./${NE
 echo -e $C_GRN"   rename manage-confluence-cluster-${LAST_VERSION}-version.txt to manage-confluence-cluster-${NEW_VERSION}-version.txt${C_RST}"
 
 
+#mv ./${NEW_VERSION}/manage-confluence-cluster-${LAST_VERSION}.sh ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh
+#echo -e $C_GRN"   replace ${LAST_VERSION} by ${NEW_VERSION} in manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
+
+sed -i .bak "s/${LAST_VERSION//[.]/\.}/${NEW_VERSION}/g" ./${NEW_VERSION}/manage-confluence-cluster-${NEW_VERSION}.sh && rm -f *.bak
+echo -e $C_GRN"   replace ${LAST_VERSION} by ${NEW_VERSION} in manage-confluence-cluster-${NEW_VERSION}.sh${C_RST}"
+
 #  echo "Replacing version in $f"
 #  sed -i .bak 's/6\.5\.0/6.6.0/g' $f
 #  sed -i .bak 's/650/660/g' $f
