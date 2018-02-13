@@ -123,10 +123,10 @@ then
   cd ~/.provision-confluence-ds-versions-workdir/
   if [ -d "docker-atlassian-confluence-data-center" ]
   then
-    rm -rf docker-atlassian-confluence-data-center
+    rm -rf docker-atlassian-confluence-data-center___management-scripts
   fi
-  git clone https://github.com/codeclou/docker-atlassian-confluence-data-center.git
-  cd docker-atlassian-confluence-data-center
+  git clone https://github.com/codeclou/docker-atlassian-confluence-data-center.git docker-atlassian-confluence-data-center___management-scripts
+  cd docker-atlassian-confluence-data-center___management-scripts
   git checkout master > /dev/null 2>&1
   current_branch=$(git rev-parse --abbrev-ref HEAD)
   if [ "$current_branch" == "master" ]
