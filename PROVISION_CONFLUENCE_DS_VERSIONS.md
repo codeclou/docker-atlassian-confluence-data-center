@@ -60,3 +60,7 @@ What the script will do:
 What you will need to do:
 
  * -
+
+Script Preview:
+
+![](./docs/provision/provision-management-scripts.png)
