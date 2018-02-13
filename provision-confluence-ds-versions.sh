@@ -118,6 +118,8 @@ echo ""
 ####################################################################################
 if [ "$ACTION" == "management-scripts" ]
 then
+####################################################################################
+
   print_action_header $ACTION
   echo -e $C_CYN">> trying to clone management scripts on master branch${C_RST}"
   cd ~/.provision-confluence-ds-versions-workdir/
@@ -170,7 +172,7 @@ then
     echo -e $C_RED"   skipping push. no files changed on remote."${C_RST}
   }
   git status
-  echo "Do you wish to push changes to GitHub?"
+  echo -e $C_CYN">> Do you wish to push changes to GitHub?${C_RST}"
   select yn in "Yes" "No"; do
       case $yn in
           Yes ) management_scripts_do_git_push; break;;
@@ -178,11 +180,15 @@ then
       esac
   done
 
-
+  # cleanup
+  rm -rf docker-atlassian-confluence-data-center___management-scripts
   echo ""
 
-####
+####################################################################################
 fi
+####################################################################################
+
+
 
 ####################################################################################
 #
