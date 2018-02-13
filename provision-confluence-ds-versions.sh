@@ -121,6 +121,10 @@ then
   print_action_header $ACTION
   echo -e $C_CYN">> trying to clone management scripts on master branch${C_RST}"
   cd ~/.provision-confluence-ds-versions-workdir/
+  if [ -d "docker-atlassian-confluence-data-center" ]
+  then
+    rm -rf docker-atlassian-confluence-data-center
+  fi
   git clone https://github.com/codeclou/docker-atlassian-confluence-data-center.git
   cd docker-atlassian-confluence-data-center
   git checkout master > /dev/null 2>&1
@@ -150,17 +154,30 @@ then
   cd ${NEW_VERSION}
   rename_file     manage-confluence-cluster-${LAST_VERSION}.sh             manage-confluence-cluster-${NEW_VERSION}.sh
   rename_file     manage-confluence-cluster-${LAST_VERSION}-version.txt    manage-confluence-cluster-${NEW_VERSION}-version.txt
-
   replace_in_file ${LAST_VERSION}           ${NEW_VERSION}           manage-confluence-cluster-${NEW_VERSION}.sh
   replace_in_file ${LAST_VERSION}           ${NEW_VERSION}           README.md
   replace_in_file ${LAST_VERSION_NO_DOTS}   ${NEW_VERSION_NO_DOTS}   manage-confluence-cluster-${NEW_VERSION}.sh
   replace_in_file ${LAST_VERSION_NO_DOTS}   ${NEW_VERSION_NO_DOTS}   README.md
+  cd ..
 
+  function management_scripts_do_git_push {
+      git add ./${NEW_VERSION}
+      git commit -m "automated creation of version ${NEW_VERSION}"
+      echo -e $C_GRN"   adding new files and pushing to GitHub"${C_RST}
+      git push
+  }
+  function management_scripts_cancel_git_push {
+    echo -e $C_RED"   skipping push. no files changed on remote."${C_RST}
+  }
+  git status
+  echo "Do you wish to push changes to GitHub?"
+  select yn in "Yes" "No"; do
+      case $yn in
+          Yes ) management_scripts_do_git_push; break;;
+          No ) management_scripts_cancel_git_push; exit;;
+      esac
+  done
 
-  #git add ./${NEW_VERSION}
-  #git commit -m "automated creation of version ${NEW_VERSION}"
-  #git push
-  #echo -e $C_GRN"   adding new files and pushing to GitHub"
 
   echo ""
 
