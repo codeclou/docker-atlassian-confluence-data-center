@@ -49,3 +49,14 @@ What you will need to do:
                                      # WHAT              # OLD   # NEW
 provision-confluence-ds-versions.sh  management-scripts  6.6.0   6.7.1
 ```
+
+What the script will do:
+
+ * (1) clone the repo
+ * (2) copy version folder containing script to new version folder
+ * (3) replace version strings in files
+ * (4) asks if you want to push to remote
+
+What you will need to do:
+
+ * -
