@@ -45,6 +45,14 @@ C_RST='\x1B[39m'
 #
 ####################################################################################
 
+# Used to be able to use pass-by-reference in bash
+#
+#
+return_by_reference() {
+    if unset -v "$1"; then
+        eval $1=\"\$2\"
+    fi
+}
 
 # Replace str1 in file by str2
 #
@@ -94,6 +102,61 @@ function print_action_header {
   echo ""
 }
 
+# Checks if branchName exists
+#
+# @param $1 {string} branchName
+# @param $2 {int} return value passByReference
+function does_branch_exist {
+  branchName=$1
+  local ret_value=-1
+  local DOES_BRANCH_EXIST=$(git branch -a | grep $branchName | wc -l | awk '{print $1}')
+  if [ "$DOES_BRANCH_EXIST" != "0" ]
+  then
+    ret_value=1
+  fi
+  local "$2" && return_by_reference $2 $ret_value
+}
+
+# Checks out branchName (you must check if exists before!)
+#
+# @param $1 {string} branchName
+function checkout_branch {
+  branchName=$1
+  git checkout ${branchName} > /dev/null 2>&1
+}
+
+# Git
+#
+# @param $1 {string} branchName
+function branch_must_exist {
+  branchName=$1
+  does_branch_exist_result=-1
+  does_branch_exist ${branchName} does_branch_exist_result
+  if [ "$does_branch_exist_result" == "1" ]
+  then
+    echo -e $C_GRN"   branch ${branchName} exists. CONTINUE.${C_RST}"
+  else
+    echo -e $C_RED"   branch ${branchName} does not exist (must exist to continue). EXIT.${C_RST}"
+    exit 1
+  fi
+}
+
+# Git
+#
+# @param $1 {string} branchName
+function branch_must_not_exist {
+  branchName=$1
+  does_branch_exist_result=-1
+  does_branch_exist ${branchName} does_branch_exist_result
+  if [ "$does_branch_exist_result" == "1" ]
+  then
+    echo -e $C_RED"   branch ${branchName} exists (must not exist to continue). EXIT.${C_RST}"
+    exit 1
+  else
+    echo -e $C_GRN"   branch ${branchName} does not exists. CONTINUE.${C_RST}"
+  fi
+}
+
 #
 # SCRIPT HEADER
 #
@@ -123,7 +186,7 @@ then
   print_action_header $ACTION
   echo -e $C_CYN">> trying to clone management scripts on master branch${C_RST}"
   cd ~/.provision-confluence-ds-versions-workdir/
-  if [ -d "docker-atlassian-confluence-data-center" ]
+  if [ -d "docker-atlassian-confluence-data-center___management-scripts" ]
   then
     rm -rf docker-atlassian-confluence-data-center___management-scripts
   fi
@@ -192,9 +255,38 @@ fi
 
 ####################################################################################
 #
-# COPY CONFLUENCE-NODE BRANCH
+# ACTION: BASE-IMAGE
 #
 ####################################################################################
+if [ "$ACTION" == "base-image" ]
+then
+####################################################################################
+
+  print_action_header $ACTION
+  echo -e $C_CYN">> trying to clone atlassian-base-images repo${C_RST}"
+  cd ~/.provision-confluence-ds-versions-workdir/
+  if [ -d "docker-atlassian-base-images___confluence" ]
+  then
+    rm -rf docker-atlassian-base-images___confluence
+  fi
+  git clone https://github.com/codeclou/docker-atlassian-base-images.git docker-atlassian-base-images___confluence
+  cd docker-atlassian-base-images___confluence
+  pwd
+  branch_must_exist "confluence-${LAST_VERSION}"
+  branch_must_not_exist "confluence-${NEW_VERSION}"
+  checkout_branch conluencenode-${LAST_VERSION}
+
+
+####################################################################################
+fi
+####################################################################################
+
+
+
+
+
+
+
 #echo -e $C_CYN">> trying to clone confluencenode-${LAST_VERSION} branch${C_RST}"
 #git checkout confluencenode-${LAST_VERSION} > /dev/null 2>&1
 #current_branch=$(git rev-parse --abbrev-ref HEAD)
