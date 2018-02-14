@@ -32,13 +32,17 @@ What the script will do:
  * (1) clone the repo
  * (2) branch off of oldVersion to newVersion branch
  * (3) replace version strings in files
- * (4) trigger a test build of docker image
+ * (4) builds docker image locally (for testing only)
+ * (5) asks if you want to push changes to remote
 
 What you will need to do:
 
- * (1) check if docker build works
- * (2) stage, commit and push branch
- * (3) check docker hub to see if [build for branch succeeds](https://hub.docker.com/r/codeclou/docker-atlassian-base-images/builds/)
+ * (1) check docker hub to see if [build for branch succeeds](https://hub.docker.com/r/codeclou/docker-atlassian-base-images/builds/)
+
+
+
+
+
 
 
 &nbsp;
@@ -59,8 +63,37 @@ What the script will do:
 
 What you will need to do:
 
- * -
+ * (1) Check repo if scripts have been created correctly
 
 Script Preview:
 
 ![](./docs/provision/provision-management-scripts.png)
+
+
+
+
+
+
+
+
+&nbsp;
+
+### (3) Create confluencenode-{VRSN} branch and docker image
+
+```
+                                     # WHAT              # OLD   # NEW
+provision-confluence-ds-versions.sh  confluencenode      6.6.0   6.7.1
+```
+
+What the script will do:
+
+ * (1) clone the repo
+ * (2) checkout branch confluencenode-{lastVersion}
+ * (3) branch off confluencenode-{newVersion}
+ * (4) replace version strings in files
+ * (5) builds docker image locally (for testing only)
+ * (6) asks if you want to push to remote
+
+What you will need to do:
+
+ * (1) check docker hub to see if [build for branch succeeds](https://hub.docker.com/r/codeclou/docker-atlassian-confluence-data-center/builds/)

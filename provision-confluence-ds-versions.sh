@@ -160,22 +160,22 @@ function branch_must_not_exist {
 #
 #
 #
-function confirm_git_add_commit_push {
-  function management_scripts_do_git_push {
-      git add ./${NEW_VERSION}
+function confirm_git_add_and_commit {
+  function management_scripts_do_git_addcommit {
+      git add . -A
       git commit -m "automated creation of version ${NEW_VERSION}"
-      echo -e $C_GRN"   adding new files and pushing to GitHub"${C_RST}
-      git push
+      echo -e $C_GRN"   adding new files and comitting. Ready to push to remote."${C_RST}
   }
-  function management_scripts_cancel_git_push {
-    echo -e $C_RED"   skipping push. no files changed on remote."${C_RST}
+  function management_scripts_cancel_git_addcommit {
+    echo -e $C_RED"   skipping add and commit. no files staged! EXIT."${C_RST}
+    exit 1
   }
   git status
-  echo -e $C_CYN">> Do you wish to push changes to GitHub?${C_RST}"
+  echo -e $C_CYN">> Do you wish to add and commit changes?${C_RST}"
   select yn in "Yes" "No"; do
       case $yn in
-          Yes ) management_scripts_do_git_push; break;;
-          No ) management_scripts_cancel_git_push; exit;;
+          Yes ) management_scripts_do_git_addcommit; break;;
+          No ) management_scripts_cancel_git_addcommit; exit;;
       esac
   done
 }
@@ -248,7 +248,8 @@ then
   replace_in_file ${LAST_VERSION_NO_DOTS}   ${NEW_VERSION_NO_DOTS}   README.md
   cd ..
 
-  confirm_git_add_commit_push
+  confirm_git_add_and_commit
+  git push
 
   # cleanup
   rm -rf docker-atlassian-confluence-data-center___management-scripts
@@ -284,7 +285,10 @@ then
   git branch "confluence-${NEW_VERSION}"
   checkout_branch "confluence-${NEW_VERSION}"
   replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    Dockerfile
-  confirm_git_add_commit_push
+  docker build . -t confluence-${NEW_VERSION}
+  echo -e $C_CYN">> docker build successful${C_RST}"
+  confirm_git_add_and_commit
+  git push --set-upstream origin "confluence-${NEW_VERSION}"
 
   # cleanup
   rm -rf docker-atlassian-base-images___confluence
@@ -294,6 +298,57 @@ then
 fi
 ####################################################################################
 
+
+
+
+
+
+
+####################################################################################
+#
+# ACTION: CONFLUENCENODE
+#
+####################################################################################
+if [ "$ACTION" == "confluencenode" ]
+then
+####################################################################################
+
+  print_action_header $ACTION
+  echo -e $C_CYN">> trying to clone atlassian-base-images repo${C_RST}"
+  cd ~/.provision-confluence-ds-versions-workdir/
+  if [ -d "docker-atlassian-confluence-data-center___confluencenode" ]
+  then
+    rm -rf docker-atlassian-confluence-data-center___confluencenode
+  fi
+  git clone https://github.com/codeclou/docker-atlassian-confluence-data-center.git docker-atlassian-confluence-data-center___confluencenode
+  cd docker-atlassian-confluence-data-center___confluencenode
+  branch_must_exist "confluencenode-${LAST_VERSION}"
+  branch_must_not_exist "confluencenode-${NEW_VERSION}"
+  checkout_branch "confluencenode-${LAST_VERSION}"
+  git branch "confluencenode-${NEW_VERSION}"
+  checkout_branch "confluencenode-${NEW_VERSION}"
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    Dockerfile
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    README.md
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    confluence-home-sync-server.py
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    docker-entrypoint.sh
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    run-synchrony-jar.sh.jinja2
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    Dockerfile
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    README.md
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    confluence-home-sync-server.py
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    docker-entrypoint.sh
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    run-synchrony-jar.sh.jinja2
+  docker build . -t confluencenode-${NEW_VERSION}
+  echo -e $C_CYN">> docker build successful${C_RST}"
+  confirm_git_add_and_commit
+  git push --set-upstream origin "confluencenode-${NEW_VERSION}"
+
+  # cleanup
+  rm -rf docker-atlassian-confluence-data-center___confluencenode
+  echo ""
+
+####################################################################################
+fi
+####################################################################################
 
 
 
