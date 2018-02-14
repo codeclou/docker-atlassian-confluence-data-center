@@ -16,6 +16,10 @@ Note that:
  * docker needs to be installed
  * script will clone git repos to `~/.provision-confluence-ds-versions-workdir/`
 
+
+
+
+
 &nbsp;
 
 ### (1) Create new Confluence base Image
@@ -97,3 +101,28 @@ What the script will do:
 What you will need to do:
 
  * (1) check docker hub to see if [build for branch succeeds](https://hub.docker.com/r/codeclou/docker-atlassian-confluence-data-center/builds/)
+
+
+
+
+ &nbsp;
+
+ ### (4) Create loadbalancer-{VRSN} branch and docker image
+
+ ```
+                                      # WHAT              # OLD   # NEW
+ provision-confluence-ds-versions.sh  loadbalancer        6.6.0   6.7.1
+ ```
+
+ What the script will do:
+
+  * (1) clone the repo
+  * (2) checkout branch loadbalancer-{lastVersion}
+  * (3) branch off loadbalancer-{newVersion}
+  * (4) replace version strings in files
+  * (5) builds docker image locally (for testing only)
+  * (6) asks if you want to push to remote
+
+ What you will need to do:
+
+  * (1) check docker hub to see if [build for branch succeeds](https://hub.docker.com/r/codeclou/docker-atlassian-confluence-data-center/builds/)

@@ -314,7 +314,7 @@ then
 ####################################################################################
 
   print_action_header $ACTION
-  echo -e $C_CYN">> trying to clone atlassian-base-images repo${C_RST}"
+  echo -e $C_CYN">> trying to clone docker-atlassian-confluence-data-center repo${C_RST}"
   cd ~/.provision-confluence-ds-versions-workdir/
   if [ -d "docker-atlassian-confluence-data-center___confluencenode" ]
   then
@@ -344,6 +344,51 @@ then
 
   # cleanup
   rm -rf docker-atlassian-confluence-data-center___confluencenode
+  echo ""
+
+####################################################################################
+fi
+####################################################################################
+
+
+####################################################################################
+#
+# ACTION: LOADBALANCER
+#
+####################################################################################
+if [ "$ACTION" == "loadbalancer" ]
+then
+####################################################################################
+
+  print_action_header $ACTION
+  echo -e $C_CYN">> trying to clone docker-atlassian-confluence-data-center repo${C_RST}"
+  cd ~/.provision-confluence-ds-versions-workdir/
+  if [ -d "docker-atlassian-confluence-data-center___loadbalancer" ]
+  then
+    rm -rf docker-atlassian-confluence-data-center___loadbalancer
+  fi
+  git clone https://github.com/codeclou/docker-atlassian-confluence-data-center.git docker-atlassian-confluence-data-center___loadbalancer
+  cd docker-atlassian-confluence-data-center___loadbalancer
+  branch_must_exist "loadbalancer-${LAST_VERSION}"
+  branch_must_not_exist "loadbalancer-${NEW_VERSION}"
+  checkout_branch "loadbalancer-${LAST_VERSION}"
+  git branch "loadbalancer-${NEW_VERSION}"
+  checkout_branch "loadbalancer-${NEW_VERSION}"
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    Dockerfile
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    README.md
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    loadbalancer-virtual-host.conf.jinja2
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    docker-entrypoint.sh
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    Dockerfile
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    README.md
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    loadbalancer-virtual-host.conf.jinja2
+  replace_in_file ${LAST_VERSION_NO_DOTS}    ${NEW_VERSION_NO_DOTS}    docker-entrypoint.sh
+  docker build . -t loadbalancer-${NEW_VERSION}
+  echo -e $C_CYN">> docker build successful${C_RST}"
+  confirm_git_add_and_commit
+  git push --set-upstream origin "loadbalancer-${NEW_VERSION}"
+
+  # cleanup
+  rm -rf docker-atlassian-confluence-data-center___loadbalancer
   echo ""
 
 ####################################################################################
