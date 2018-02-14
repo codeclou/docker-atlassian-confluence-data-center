@@ -158,6 +158,29 @@ function branch_must_not_exist {
 }
 
 #
+#
+#
+function confirm_git_add_commit_push {
+  function management_scripts_do_git_push {
+      git add ./${NEW_VERSION}
+      git commit -m "automated creation of version ${NEW_VERSION}"
+      echo -e $C_GRN"   adding new files and pushing to GitHub"${C_RST}
+      git push
+  }
+  function management_scripts_cancel_git_push {
+    echo -e $C_RED"   skipping push. no files changed on remote."${C_RST}
+  }
+  git status
+  echo -e $C_CYN">> Do you wish to push changes to GitHub?${C_RST}"
+  select yn in "Yes" "No"; do
+      case $yn in
+          Yes ) management_scripts_do_git_push; break;;
+          No ) management_scripts_cancel_git_push; exit;;
+      esac
+  done
+}
+
+#
 # SCRIPT HEADER
 #
 echo ""
@@ -225,23 +248,7 @@ then
   replace_in_file ${LAST_VERSION_NO_DOTS}   ${NEW_VERSION_NO_DOTS}   README.md
   cd ..
 
-  function management_scripts_do_git_push {
-      git add ./${NEW_VERSION}
-      git commit -m "automated creation of version ${NEW_VERSION}"
-      echo -e $C_GRN"   adding new files and pushing to GitHub"${C_RST}
-      git push
-  }
-  function management_scripts_cancel_git_push {
-    echo -e $C_RED"   skipping push. no files changed on remote."${C_RST}
-  }
-  git status
-  echo -e $C_CYN">> Do you wish to push changes to GitHub?${C_RST}"
-  select yn in "Yes" "No"; do
-      case $yn in
-          Yes ) management_scripts_do_git_push; break;;
-          No ) management_scripts_cancel_git_push; exit;;
-      esac
-  done
+  confirm_git_add_commit_push
 
   # cleanup
   rm -rf docker-atlassian-confluence-data-center___management-scripts
@@ -271,11 +278,17 @@ then
   fi
   git clone https://github.com/codeclou/docker-atlassian-base-images.git docker-atlassian-base-images___confluence
   cd docker-atlassian-base-images___confluence
-  pwd
   branch_must_exist "confluence-${LAST_VERSION}"
   branch_must_not_exist "confluence-${NEW_VERSION}"
-  checkout_branch conluencenode-${LAST_VERSION}
+  checkout_branch "confluence-${LAST_VERSION}"
+  git branch "confluence-${NEW_VERSION}"
+  checkout_branch "confluence-${NEW_VERSION}"
+  replace_in_file ${LAST_VERSION}    ${NEW_VERSION}    Dockerfile
+  confirm_git_add_commit_push
 
+  # cleanup
+  rm -rf docker-atlassian-base-images___confluence
+  echo ""
 
 ####################################################################################
 fi
