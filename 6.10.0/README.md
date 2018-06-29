@@ -26,7 +26,7 @@ It basically works in the following way:
   * It creates a docker bridge network called `confluence-cluster-6100`.
   * It creates a shared volume called `confluence-shared-home-6100`.
   * It creates a docker container called `confluence-cluster-6100-lb` as the loadbalancer.
-    * Binds Port 506100/tcp to the host.
+    * Binds Port 26100/tcp to the host.
   * It creates a docker container called `confluence-cluster-6100-db` as the database.
     * Port 5432/tcp are only exposed inside the `confluence-cluster-6100` network.
   * It creates one docker containers called `confluence-cluster-6100-node1` as Confluence instance.
@@ -39,7 +39,7 @@ It basically works in the following way:
 
 The script is meant to follow the convention over configuration paradigma, therefore there is not much to be configured, except two things:
 
-  * It relies on the hostname `confluence-cluster-6100-lb` pointing to the interface which binds 506100/tcp.
+  * It relies on the hostname `confluence-cluster-6100-lb` pointing to the interface which binds 26100/tcp.
   * It relies on the env variable `CONFLUENCE_DATA_CENTER_LICENSE_6100` to contain a valid Confluence Data Center license.
 
 
@@ -128,7 +128,7 @@ manage-confluence-cluster-6.10.0.sh --action create --scale 1
 
 **(2) Browse to Confluence® Data Center**
 
- * Open a browser to [http://confluence-cluster-6100-lb:506100/](http://confluence-cluster-6100-lb:506100/)
+ * Open a browser to [http://confluence-cluster-6100-lb:26100/](http://confluence-cluster-6100-lb:26100/)
  * It might take several minutes for the cluster to fully start up.
 
 &nbsp;
@@ -144,7 +144,7 @@ manage-confluence-cluster-6.10.0.sh --action info
 Should show something like so. If `confluence-cluster-6100-node1` does not show up, then re-run the create cluster command!
 
 ```
-373f159568f4    confluence-cluster-6100-lb      0.0.0.0:506100->506100/tcp
+373f159568f4    confluence-cluster-6100-lb      0.0.0.0:26100->26100/tcp
 816c1c17a821    confluence-cluster-6100-node1   5701/tcp, 5801/tcp, 8090-8091/tcp, 25500/tcp
 38575aee0e9d    confluence-cluster-6100-db      5432/tcp
 ```
@@ -162,7 +162,7 @@ docker logs confluence-cluster-6100-node1
 
 Once the cluster is fully started up, you need to configure Confluence® Data Center in the browser.
 
-Go to **[http://confluence-cluster-6100-lb:506100/](http://confluence-cluster-6100-lb:506100/)** and make sure you enabled cookies in your Browser (sticky session).
+Go to **[http://confluence-cluster-6100-lb:26100/](http://confluence-cluster-6100-lb:26100/)** and make sure you enabled cookies in your Browser (sticky session).
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/01-production-installation.png?v2" /></p>
 
@@ -251,7 +251,7 @@ Run the **Healthcheck** under 'Administration' → 'Support Tools'.
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/40-health-support-tools-check.png" /></p>
 
-And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-6100-lb:506100/synchrony/heartbeat](http://confluence-cluster-6100-lb:506100/synchrony/heartbeat) and it should output `ok`.
+And finally check the **Synchrony Heartbeat**, therefore open [http://confluence-cluster-6100-lb:26100/synchrony/heartbeat](http://confluence-cluster-6100-lb:26100/synchrony/heartbeat) and it should output `ok`.
 
 If not all nodes you have started are active, try restarting all nodes not showing up.
 
