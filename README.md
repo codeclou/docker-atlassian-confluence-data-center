@@ -10,15 +10,16 @@ Please choose the Confluence version you want to run:
 
 |Confluence Version |  Loadbalancer URL | 3rdparty Versions |
 |-------------------|------------|-----------------|
-| **⇨ [6.12.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.12.1)** |  http://confluence-cluster-6121-lb:26121/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.12.1/Dockerfile) |
-| **⇨ [6.11.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.11.0)** |  http://confluence-cluster-6110-lb:26110/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.11.0/Dockerfile) |
-| **⇨ [6.10.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.10.0)** |  http://confluence-cluster-6100-lb:26100/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.10.0/Dockerfile) |
-| **⇨ [6.9.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.9.1)** |  http://confluence-cluster-691-lb:50691/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.9.1/Dockerfile) |
+| **⇨ [6.13.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.13.0)** |  http://confluence-cluster-6130-lb:26130/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [OpenJDK:8u181](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.13.0/Dockerfile) |
+| **⇨ [6.12.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.12.1)** |  http://confluence-cluster-6121-lb:26121/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.12.1/Dockerfile) |
+| **⇨ [6.11.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.11.0)** |  http://confluence-cluster-6110-lb:26110/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.11.0/Dockerfile) |
+| **⇨ [6.10.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.10.0)** |  http://confluence-cluster-6100-lb:26100/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.10.0/Dockerfile) |
+| **⇨ [6.9.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.9.1)** |  http://confluence-cluster-691-lb:50691/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.9.1/Dockerfile) |
 | **⇨ [6.8.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.8.0)** | http://confluence-cluster-680-lb:50680/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.8.0/Dockerfile) |
-| **⇨ [6.7.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.7.1)** |  http://confluence-cluster-671-lb:50671/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.7.1/Dockerfile) |
-| **⇨ [6.6.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.6.0)** |  http://confluence-cluster-660-lb:50660/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.6.0/Dockerfile) |
-| **⇨ [6.5.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.5.0)** |   http://confluence-cluster-650-lb:50650/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
-| **⇨ [6.4.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.4.0)** |   http://confluence-cluster-640-lb:50640/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [java:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
+| **⇨ [6.7.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.7.1)** |  http://confluence-cluster-671-lb:50671/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.7.1/Dockerfile) |
+| **⇨ [6.6.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.6.0)** |  http://confluence-cluster-660-lb:50660/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u152](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.6.0/Dockerfile) |
+| **⇨ [6.5.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.5.0)** |   http://confluence-cluster-650-lb:50650/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
+| **⇨ [6.4.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.4.0)** |   http://confluence-cluster-640-lb:50640/ | [postgres:9.4](https://hub.docker.com/_/postgres/) <br> [OracleJDK:8u141](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.4.0/Dockerfile) |
 
 
 **Please Note:**
@@ -84,8 +85,8 @@ Now you can inspect the reports for further information.
  * **Atlassian Confluence®**
    * Atlassian® and Confluence® are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
    * Please check yourself for corresponding Licenses and Terms of Use at [atlassian.com](https://atlassian.com).
- * **Oracle Java JDK 8**
-   * Oracle and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
+ * **Oracle Java JDK**
+   * Oracle, OpenJDK and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
    * Please check yourself for corresponding Licenses and Terms of Use at [www.oracle.com](https://www.oracle.com/).
  * **Docker**
    * Docker and the Docker logo are trademarks or registered [trademarks of Docker](https://www.docker.com/trademark-guidelines), Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein.
