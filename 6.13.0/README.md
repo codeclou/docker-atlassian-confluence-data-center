@@ -191,7 +191,7 @@ Use `/confluence-shared-home` as Shared-Home and use `230.0.0.1` as MultiCast IP
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/07-database-direct-jdbc.png" /></p>
 
-Use `confluence-cluster-6130-db` as Servername and `confluence` as username and password.
+Use `confluence-cluster-6130-db` as Servername, `5432` as Port and `confluence` as username and password.
 
 <p align="center"><img width="80%" src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/post-config/08-database-postgres-config.png" /></p>
 
