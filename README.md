@@ -10,6 +10,7 @@ Please choose the Confluence version you want to run:
 
 |Confluence Version |  Loadbalancer URL | 3rdparty Versions |
 |-------------------|------------|-----------------|
+| **⇨ [6.15.3](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.15.3)** |  http://confluence-cluster-6153-lb:26153/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [AdoptOpenJDK:8u202](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.15.3Dockerfile) |
 | **⇨ [6.15.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.15.1)** |  http://confluence-cluster-6151-lb:26151/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [OpenJDK:8u181](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.15.1/Dockerfile) |
 | **⇨ [6.14.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.14.0)** |  http://confluence-cluster-6140-lb:26140/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [OpenJDK:8u181](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.14.0/Dockerfile) |
 | **⇨ [6.13.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/6.13.0)** |  http://confluence-cluster-6130-lb:26130/ | [postgres:9.6](https://hub.docker.com/_/postgres/) <br> [OpenJDK:8u181](https://github.com/codeclou/docker-atlassian-base-images/blob/confluence-6.13.0/Dockerfile) |
