@@ -5,7 +5,7 @@
 
 ```
 cp provision-confluence-ds-versions.sh /usr/local/bin/
-chmod +x /usr/local/bin/
+chmod +x /usr/local/bin/provision-confluence-ds-versions.sh
 
 mkdir ~/.provision-confluence-ds-versions-workdir/
 ```
