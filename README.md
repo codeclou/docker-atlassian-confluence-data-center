@@ -1,9 +1,10 @@
-# docker-atlassian-confluence-data-center
+# Docker Atlassian Confluence Data Center
+
+> Start an [Atlassian Confluence Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
 
 [![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/github-product-logo-docker-atlassian-confluence.png)](https://github.com/codeclou/docker-atlassian-confluence-data-center)
 
-Start an [Atlassian Confluence® Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
-It starts a PostgreSQL Database, several Confluence® cluster nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume. This is not meant to be used in production! The cluster is designed to not be persistent, meaning, once you shut it down, all data is lost. See it as the Data-Center version of [`atlas-run-standalone`](https://developer.atlassian.com/docs/developer-tools/working-with-the-sdk/command-reference/atlas-run-standalone).
+It starts a PostgreSQL Database, several Confluence cluster nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume. This is not meant to be used in production! The cluster is designed to not be persistent, meaning, once you shut it down, all data is lost. See it as the Data Center version of [`atlas-run-standalone`](https://developer.atlassian.com/docs/developer-tools/working-with-the-sdk/command-reference/atlas-run-standalone).
 
 Please choose the Confluence version you want to run:
 
@@ -26,7 +27,7 @@ Please choose the Confluence version you want to run:
 
 
 **Please Note:**
- * I do not provide support. If you have questions on how to run Confluence and/or Confluence Data Center, please ask in the
+ * We do not provide support. If you have questions on how to run Confluence and/or Confluence Data Center, please ask in the
 [Atlassian Community](https://community.atlassian.com/).
 
 -----
@@ -85,8 +86,8 @@ Now you can inspect the reports for further information.
 
 ### Trademarks and Third Party Licenses
 
- * **Atlassian Confluence®**
-   * Atlassian® and Confluence® are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
+ * **Atlassian Confluence**
+   * Atlassian and Confluence are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
    * Please check yourself for corresponding Licenses and Terms of Use at [atlassian.com](https://atlassian.com).
  * **Oracle Java JDK**
    * Oracle, OpenJDK and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
