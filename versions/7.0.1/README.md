@@ -150,23 +150,29 @@ Wait for Confluence to start up - simply reload the cluster startup page after s
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c1.png" width="90%"/></p>
 
-
- * :bangbang: TBD SCREENSHOT
-
-Set the baseUrl to `http://confluence-cluster-701-lb:2701` and continue.
-
 Use a Data Center license. Either an Evaluation License or a [Timebomb License](https://developer.atlassian.com/platform/marketplace/timebomb-licenses-for-testing-server-apps/).
 
- * :bangbang: TBD SCREENSHOT
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c2.png" width="90%"/></p>
 
+Use multicast and the `230.0.0.1` address for cluster setup.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c3.png" width="90%"/></p>
+
+Then load an empty site.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c4.png" width="90%"/></p>
+
+Select manage users within Confluence.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c5.png" width="90%"/></p>
 
 Setup your admin account. Usually username `admin` and password `admin`.
 
- * :bangbang: TBD SCREENSHOT
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c6.png" width="90%"/></p>
 
 Finish setup.
 
- * :bangbang: TBD SCREENSHOT
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c7.png" width="90%"/></p>
 
 &nbsp;
 
@@ -174,14 +180,11 @@ Finish setup.
 Use the [Jira Data Center Health Check Tools](https://confluence.atlassian.com/enterprise/jira-data-center-health-check-tools-644580752.html)
 to check the Health of each cluster node. `System`  → `Troubleshooting and support Tools` → `Instance Health` tab
 
- * :bangbang: TBD SCREENSHOT
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c9.png" width="90%"/></p>
 
 &nbsp; 
 
-Now you should see both Cluster Nodes as active under `System` → `System Info` → `Cluster Nodes`
-
- * :bangbang: TBD SCREENSHOT
-
+Now you should see one Cluster node as active under `System` → `System Info` → `Cluster Nodes`. We will add a second node now.
 
 
 &nbsp;
@@ -198,6 +201,14 @@ data-center/master/versions/7.0.1/docker-compose-two-nodes.yml"
 docker-compose -f docker-compose-two-nodes.yml up -d
 docker-compose -f docker-compose-two-nodes.yml restart confluence-cluster-701-lb
 ```
+
+Now wait a little and again goto `System` → `System Info` → `Cluster Nodes`. There should now be both nodes active.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c8.png" width="90%"/></p>
+
+
+&nbsp;
+
 
 To add more nodes do:
 
