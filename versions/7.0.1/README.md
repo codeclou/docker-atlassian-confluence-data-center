@@ -148,7 +148,7 @@ Go to **[http://confluence-cluster-701-lb:2701/](http://confluence-cluster-701-l
 
 Wait for Confluence to start up - simply reload the cluster startup page after some minutes.
 
-<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVE_ZERO_ONE/c1.png" width="90%"/></p>
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c1.png" width="90%"/></p>
 
 
  * :bangbang: TBD SCREENSHOT
