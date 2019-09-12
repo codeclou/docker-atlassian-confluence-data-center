@@ -2,11 +2,11 @@
 
 > Start an [Atlassian Confluence Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
 
-[![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/manage-confluence-cluster-logo.svg)](https://github.com/codeclou/docker-atlassian-confluence-data-center)
+[![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/github-product-logo-docker-atlassian-confluence.png)](https://github.com/codeclou/docker-atlassian-confluence-data-center)
  
 ## Version 7.0.1
 
-It starts a PostgreSQL Database, two Confluence nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume mounts.
+It starts a PostgreSQL Database, some Confluence nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume mounts.
 
 -----
 
@@ -118,11 +118,10 @@ docker ps
 Should show something like:
 
 ```
-CONTAINER ID        IMAGE                           COMMAND                  PORTS                    NAMES
-15ed1263c551        loadbalancer:v2                 "/work-private/docke…"   0.0.0.0:2701->2701/tcp   confluence-cluster-701-lb
+CONTAINER ID        IMAGE                               COMMAND                  PORTS                    NAMES
+15ed1263c551        loadbalancer:v2                     "/work-private/docke…"   0.0.0.0:2701->2701/tcp   confluence-cluster-701-lb
 2994d0d680ad        atlassian/confluence-server:7.0.1   "/tini -- /entrypoin…"   8080/tcp                 confluence-cluster-701-node1
-63fdffefca69        atlassian/confluence-server:7.0.1   "/tini -- /entrypoin…"   8080/tcp                 confluence-cluster-701-node2
-572fcaf9f669        postgres:9.6                    "docker-entrypoint.s…"   5432/tcp                 confluence-cluster-701-db
+572fcaf9f669        postgres:9.6                        "docker-entrypoint.s…"   5432/tcp                 confluence-cluster-701-db
 ```
 
 You can check the logs of all containers by calling e.g.:
@@ -140,7 +139,7 @@ Once the cluster is fully started up, you need to configure Confluence in the br
 
 Go to **[http://confluence-cluster-701-lb:2701/](http://confluence-cluster-701-lb:2701/)** and make sure you enabled cookies (sticky session).
 
-Wait for Confluence to start up. Simply reload this page after a few minutes.
+Wait for Confluence to start up - simply reload the cluster startup page after some minutes.
 
  * :bangbang: TBD SCREENSHOT
 
