@@ -12,9 +12,7 @@ services:
         aliases:
           - confluence-cluster-701-db
   confluence-cluster-701-lb:
-    # we reuse the jira data center lb :)
-    #image: codeclou/docker-atlassian-jira-data-center:loadbalancer-9837a52
-    image: loadbalancer:v3
+    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-36c4370
     container_name: confluence-cluster-701-lb
     links:
       - confluence-cluster-701-node1

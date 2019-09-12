@@ -22,6 +22,13 @@ It starts a PostgreSQL Database, some Confluence nodes and Apache2 HTTPD as stic
  * Latest Docker version must be installed.
  * docker-compose must be installed.
 
+
+-----
+
+&nbsp;
+
+### Container Composition
+
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/setup-structure.png?v6" width="95%"/></p>
 
 -----
@@ -140,6 +147,9 @@ Once the cluster is fully started up, you need to configure Confluence in the br
 Go to **[http://confluence-cluster-701-lb:2701/](http://confluence-cluster-701-lb:2701/)** and make sure you enabled cookies (sticky session).
 
 Wait for Confluence to start up - simply reload the cluster startup page after some minutes.
+
+<p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVE_ZERO_ONE/c1.png" width="90%"/></p>
+
 
  * :bangbang: TBD SCREENSHOT
 
