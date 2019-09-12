@@ -178,7 +178,8 @@ Finish setup.
 
 
 Use the [Jira Data Center Health Check Tools](https://confluence.atlassian.com/enterprise/jira-data-center-health-check-tools-644580752.html)
-to check the Health of each cluster node. `System`  → `Troubleshooting and support Tools` → `Instance Health` tab
+to check the Health of each cluster node. `System`  → `Troubleshooting and support Tools` → `Instance Health` tab. When using the 3 hour timebomb license,
+ the license warning can be ignored.
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c9.png" width="90%"/></p>
 
