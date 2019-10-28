@@ -89,7 +89,7 @@ mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-shared
 mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-node1
 mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-node2
 # If on linux fix permissions for volume mounts
-# sudo chown 2001:2001 /opt/confluence-cluster/7.0.1/confluence-*
+# sudo chown 2002:2002 /opt/confluence-cluster/7.0.1/confluence-*
 ```
 
 Now download the `docker-compose-two-nodes.yml` file which defines the nodes. We use the official [Atlassian Docker Confluence images](https://hub.docker.com/r/atlassian/confluence-server).
@@ -101,6 +101,7 @@ curl -so docker-compose-one-node.yml \
 data-center/master/versions/7.0.1/docker-compose-one-node.yml"
 
 docker-compose -f docker-compose-one-node.yml up --detach 
+# on linux you might need to run docker with sudo e.g. "sudo docker-compose ..."
 ```
 
 This will start one Confluence Cluster nodes, a loadbalancer and a PostgreSQL database.
@@ -218,7 +219,7 @@ cd /opt/confluence-cluster/7.0.1
 mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-node3
 mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-node4
 # If on linux fix permissions for volume mounts
-# sudo chown 2001:2001 /opt/confluence-cluster/7.0.1/confluence-*
+# sudo chown 2002:2002 /opt/confluence-cluster/7.0.1/confluence-*
 ```
 
 Now scale the cluster up to three nodes.
