@@ -89,7 +89,7 @@ mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-shared
 mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-node1
 mkdir -p /opt/confluence-cluster/7.0.1/confluence-home-node2
 # If on linux fix permissions for volume mounts
-# sudo chown 2001:2001 /opt/confluence-cluster/7.0.1/confluence-*
+# sudo chown 2002:2002 /opt/confluence-cluster/7.0.1/confluence-*
 ```
 
 Now download the `docker-compose-two-nodes.yml` file which defines the nodes. We use the official [Atlassian Docker Confluence images](https://hub.docker.com/r/atlassian/confluence-server).
@@ -100,7 +100,7 @@ curl -so docker-compose-one-node.yml \
 "https://raw.githubusercontent.com/codeclou/docker-atlassian-confluence-\
 data-center/master/versions/7.0.1/docker-compose-one-node.yml"
 
-docker-compose -f docker-compose-one-node.yml up --detach 
+sudo docker-compose -f docker-compose-one-node.yml up --detach 
 ```
 
 This will start one Confluence Cluster nodes, a loadbalancer and a PostgreSQL database.
