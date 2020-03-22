@@ -3,27 +3,26 @@
 > Start an [Atlassian Confluence Data Center](https://de.atlassian.com/enterprise/data-center) with Docker for local testing during plugin development.
 
 [![](https://codeclou.github.io/docker-atlassian-confluence-data-center/img/github-product-logo-docker-atlassian-confluence.png)](https://github.com/codeclou/docker-atlassian-confluence-data-center)
- 
+
 ## Version 7.3.1
 
 It starts a PostgreSQL Database, some Confluence nodes and Apache2 HTTPD as sticky session loadbalancer. The shared confluence-home is handled via a shared Docker volume mounts.
 
------
+---
 
 &nbsp;
 
 ### Prerequisites
 
- * All Docker containers run internally as non-root with fixed UID 10777 and GID 10777.
-   * The Atlassian Docker container use UID and GID 2001.
- * You need Linux or macOS.
- * Basic unix-tools like `wc`, `awk`, `curl`, `tr`, `head` and `bash` must be installed.
- * Bash 3 or 4 must be installed.
- * Latest Docker version must be installed.
- * docker-compose must be installed.
+- All Docker containers run internally as non-root with fixed UID 10777 and GID 10777.
+  - The Atlassian Docker container use UID and GID 2001.
+- You need Linux or macOS.
+- Basic unix-tools like `wc`, `awk`, `curl`, `tr`, `head` and `bash` must be installed.
+- Bash 3 or 4 must be installed.
+- Latest Docker version must be installed.
+- docker-compose must be installed.
 
-
------
+---
 
 &nbsp;
 
@@ -31,7 +30,7 @@ It starts a PostgreSQL Database, some Confluence nodes and Apache2 HTTPD as stic
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SIX_FOUR_ZERO/setup-structure.png?v6" width="95%"/></p>
 
------
+---
 
 &nbsp;
 
@@ -45,6 +44,7 @@ Add the alias on your Docker-Host machine.
 sudo su
 echo "127.0.0.1  confluence-cluster-731-lb" >> /etc/hosts
 ```
+
 If you like to work with your cluster from your local network, use the servers public IP instead.
 
 &nbsp;
@@ -71,10 +71,10 @@ sudo chown $NORMALUSER /opt/confluence-cluster/
 
 **(4) On macOS add /opt/confluence-cluster/ to Docker Settings**
 
-Under Docker Settings add `/opt/confluence-cluster/` to *File Sharing* folders 
+Under Docker Settings add `/opt/confluence-cluster/` to _File Sharing_ folders
 and restart docker.
 
------
+---
 
 &nbsp;
 
@@ -100,8 +100,11 @@ curl -so docker-compose-one-node.yml \
 "https://raw.githubusercontent.com/codeclou/docker-atlassian-confluence-\
 data-center/master/versions/7.3.1/docker-compose-one-node.yml"
 
-docker-compose -f docker-compose-one-node.yml up --detach 
+docker-compose -f docker-compose-one-node.yml up --detach
 # on linux you might need to run docker with sudo e.g. "sudo docker-compose ..."
+
+# if some longer HTTP 503, try restarting Loadbalancer
+docker-compose -f docker-compose-one-node.yml restart confluence-cluster-731-lb
 ```
 
 This will start one Confluence Cluster nodes, a loadbalancer and a PostgreSQL database.
@@ -110,8 +113,8 @@ This will start one Confluence Cluster nodes, a loadbalancer and a PostgreSQL da
 
 **(2) Browse to Confluence**
 
- * Open a browser to [http://confluence-cluster-731-lb:2731/](http://confluence-cluster-731-lb:2731/)
- * It might take several minutes for the cluster to fully start up.
+- Open a browser to [http://confluence-cluster-731-lb:2731/](http://confluence-cluster-731-lb:2731/)
+- It might take several minutes for the cluster to fully start up.
 
 &nbsp;
 
@@ -137,7 +140,6 @@ You can check the logs of all containers by calling e.g.:
 ```bash
 docker-compose -f docker-compose-two-nodes.yml logs
 ```
-
 
 &nbsp;
 
@@ -177,17 +179,15 @@ Finish setup.
 
 &nbsp;
 
-
 Use the [Jira Data Center Health Check Tools](https://confluence.atlassian.com/enterprise/jira-data-center-health-check-tools-644580752.html)
-to check the Health of each cluster node. `System`  → `Troubleshooting and support Tools` → `Instance Health` tab. When using the 3 hour timebomb license,
- the license warning can be ignored.
+to check the Health of each cluster node. `System` → `Troubleshooting and support Tools` → `Instance Health` tab. When using the 3 hour timebomb license,
+the license warning can be ignored.
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c9.png" width="90%"/></p>
 
-&nbsp; 
+&nbsp;
 
 Now you should see one Cluster node as active under `System` → `System Info` → `Cluster Nodes`. We will add a second node now.
-
 
 &nbsp;
 
@@ -208,9 +208,7 @@ Now wait a little and again goto `System` → `System Info` → `Cluster Nodes`.
 
 <p align="center"><img src="https://codeclou.github.io/docker-atlassian-confluence-data-center/SEVEN_ZERO_ONE/c8.png" width="90%"/></p>
 
-
 &nbsp;
-
 
 To add more nodes do:
 
@@ -261,7 +259,7 @@ docker-compose -f docker-compose-two-nodes.yml down
 
 This will kill and remove all instances.
 
------
+---
 
 &nbsp;
 
@@ -284,8 +282,7 @@ COMMIT
 
 &nbsp;
 
-
------
+---
 
 &nbsp;
 
@@ -293,41 +290,41 @@ COMMIT
 
 Tested under the following Operating Systems:
 
- * Ubuntu 16.04 64 Bit Server
-   * Docker version 17.03.0-ce, build 60ccb22
-   * GNU bash, version 4.3.46(1)-release (x86_64-pc-linux-gnu)
- * OS X El Capitan
-   * Docker version 17.03.0-ce, build 60ccb22
-   * GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15)
+- Ubuntu 16.04 64 Bit Server
+  - Docker version 17.03.0-ce, build 60ccb22
+  - GNU bash, version 4.3.46(1)-release (x86_64-pc-linux-gnu)
+- OS X El Capitan
+  - Docker version 17.03.0-ce, build 60ccb22
+  - GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15)
 
 Not tested and not compatible under the following Operating Systems:
 
-  * Microsoft Windows
+- Microsoft Windows
 
------
+---
 
 &nbsp;
 
 ### Trademarks and Third Party Licenses
 
- * **Atlassian Jira Sofware**
-   * Atlassian®, Jira, Jira Software are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
-   * Please check yourself for corresponding Licenses and Terms of Use at [atlassian.com](https://atlassian.com).
- * **Oracle Java**
-   * Oracle, OpenJDK and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
-   * Please check yourself for corresponding Licenses and Terms of Use at [www.oracle.com](https://www.oracle.com/).
- * **Docker**
-   * Docker and the Docker logo are trademarks or registered [trademarks of Docker](https://www.docker.com/trademark-guidelines), Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein.
-   * Please check yourself for corresponding Licenses and Terms of Use at [www.docker.com](https://www.docker.com/).
- * **PostgreSQL**
-   * PostgreSQL is a [registered trademark of the PostgreSQL Community Association of Canada](https://wiki.postgresql.org/wiki/Trademark_Policy).
-   * Please check yourself for corresponding Licenses and Terms of Use at [www.postgresql.org](https://www.postgresql.org/).
- * **Ubuntu**
-   * Ubuntu and Canonical are registered [trademarks of Canonical Ltd.](https://www.ubuntu.com/legal/short-terms)
- * **Apple**
-   * macOS®, Mac and OS X are [trademarks of Apple Inc.](http://www.apple.com/legal/intellectual-property/trademark/appletmlist.html), registered in the U.S. and other countries.
+- **Atlassian Jira Sofware**
+  - Atlassian®, Jira, Jira Software are registered [trademarks of Atlassian Pty Ltd](https://de.atlassian.com/legal/trademark).
+  - Please check yourself for corresponding Licenses and Terms of Use at [atlassian.com](https://atlassian.com).
+- **Oracle Java**
+  - Oracle, OpenJDK and Java are registered [trademarks of Oracle](https://www.oracle.com/legal/trademarks.html) and/or its affiliates. Other names may be trademarks of their respective owners.
+  - Please check yourself for corresponding Licenses and Terms of Use at [www.oracle.com](https://www.oracle.com/).
+- **Docker**
+  - Docker and the Docker logo are trademarks or registered [trademarks of Docker](https://www.docker.com/trademark-guidelines), Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein.
+  - Please check yourself for corresponding Licenses and Terms of Use at [www.docker.com](https://www.docker.com/).
+- **PostgreSQL**
+  - PostgreSQL is a [registered trademark of the PostgreSQL Community Association of Canada](https://wiki.postgresql.org/wiki/Trademark_Policy).
+  - Please check yourself for corresponding Licenses and Terms of Use at [www.postgresql.org](https://www.postgresql.org/).
+- **Ubuntu**
+  - Ubuntu and Canonical are registered [trademarks of Canonical Ltd.](https://www.ubuntu.com/legal/short-terms)
+- **Apple**
+  - macOS®, Mac and OS X are [trademarks of Apple Inc.](http://www.apple.com/legal/intellectual-property/trademark/appletmlist.html), registered in the U.S. and other countries.
 
------
+---
 
 &nbsp;
 
