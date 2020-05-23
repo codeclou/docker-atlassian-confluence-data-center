@@ -1,7 +1,7 @@
-version: '3.2'
+version: "3.2"
 services:
   confluence-cluster-750-db:
-    image: postgres:9.6
+    image: postgres:10-alpine
     container_name: confluence-cluster-750-db
     environment:
       - POSTGRES_PASSWORD=confluence
@@ -64,8 +64,6 @@ services:
       confluence-cluster-network-750:
         aliases:
           - confluence-cluster-750-node1
-
-
 
 networks:
   confluence-cluster-network-750:
