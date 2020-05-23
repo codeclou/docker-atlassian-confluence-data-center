@@ -1,0 +1,187 @@
+version: '3.2'
+services:
+  confluence-cluster-750-db:
+    image: postgres:9.6
+    container_name: confluence-cluster-750-db
+    environment:
+      - POSTGRES_PASSWORD=confluence
+      - POSTGRES_USER=confluence
+      - POSTGRES_DB=confluence
+    networks:
+      confluence-cluster-network-750:
+        aliases:
+          - confluence-cluster-750-db
+  confluence-cluster-750-lb:
+    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-36c4370
+    container_name: confluence-cluster-750-lb
+    links:
+      - confluence-cluster-750-node1
+      - confluence-cluster-750-node2
+      - confluence-cluster-750-node3
+      - confluence-cluster-750-node4
+    ports:
+      - 2750:2750
+    environment:
+      - LB_PORT=2750
+      - NODES=4
+      - NODES_NAME_SCHEMA=confluence-cluster-750-node___NUM___
+    networks:
+      confluence-cluster-network-750:
+        aliases:
+          - confluence-cluster-750-lb
+  confluence-cluster-750-node1:
+    image: atlassian/confluence-server:7.5.0-jdk11
+    container_name: confluence-cluster-750-node1
+    links:
+      - confluence-cluster-750-db
+    environment:
+      # Memory / Heap Size
+      - JVM_MINIMUM_MEMORY=512M
+      - JVM_MAXIMUM_MEMORY=2048M
+      # Reverse Proxy Settings
+      - ATL_PROXY_NAME=confluence-cluster-750-lb
+      - ATL_PROXY_PORT=2750
+      # Database
+      - ATL_JDBC_URL=jdbc:postgresql://confluence-cluster-750-db:5432/confluence
+      - ATL_JDBC_USER=confluence
+      - ATL_JDBC_PASSWORD=confluence
+      - ATL_DB_TYPE=postgresql
+      # Data Center configuration
+      - ATL_CLUSTER_TYPE=multicast
+      - ATL_CLUSTER_NAME=confluence-cluster
+      - ATL_CLUSTER_ADDRESS=230.0.0.1
+      - ATL_CLUSTER_TTL=32
+      # Home Directories
+      - CONFLUENCE_HOME=/opt/confluence-home
+      - ATL_PRODUCT_HOME_SHARED=/opt/confluence-home-shared
+    volumes:
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-node1
+        target: /opt/confluence-home
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-shared
+        target: /opt/confluence-home-shared
+    depends_on:
+      - confluence-cluster-750-db
+    networks:
+      confluence-cluster-network-750:
+        aliases:
+          - confluence-cluster-750-node1
+  confluence-cluster-750-node2:
+    image: atlassian/confluence-server:7.5.0-jdk11
+    container_name: confluence-cluster-750-node2
+    links:
+      - confluence-cluster-750-db
+    environment:
+      # Memory / Heap Size
+      - JVM_MINIMUM_MEMORY=512M
+      - JVM_MAXIMUM_MEMORY=2048M
+      # Reverse Proxy Settings
+      - ATL_PROXY_NAME=confluence-cluster-750-lb
+      - ATL_PROXY_PORT=2750
+      # Database
+      - ATL_JDBC_URL=jdbc:postgresql://confluence-cluster-750-db:5432/confluence
+      - ATL_JDBC_USER=confluence
+      - ATL_JDBC_PASSWORD=confluence
+      - ATL_DB_TYPE=postgresql
+      # Data Center configuration
+      - ATL_CLUSTER_TYPE=multicast
+      - ATL_CLUSTER_NAME=confluence-cluster
+      - ATL_CLUSTER_ADDRESS=230.0.0.1
+      - ATL_CLUSTER_TTL=32
+      # Home Directories
+      - CONFLUENCE_HOME=/opt/confluence-home
+      - ATL_PRODUCT_HOME_SHARED=/opt/confluence-home-shared
+    volumes:
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-node2
+        target: /opt/confluence-home
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-shared
+        target: /opt/confluence-home-shared
+    depends_on:
+      - confluence-cluster-750-db
+    networks:
+      confluence-cluster-network-750:
+        aliases:
+          - confluence-cluster-750-node2
+  confluence-cluster-750-node3:
+    image: atlassian/confluence-server:7.5.0-jdk11
+    container_name: confluence-cluster-750-node3
+    links:
+      - confluence-cluster-750-db
+    environment:
+      # Memory / Heap Size
+      - JVM_MINIMUM_MEMORY=512M
+      - JVM_MAXIMUM_MEMORY=2048M
+      # Reverse Proxy Settings
+      - ATL_PROXY_NAME=confluence-cluster-750-lb
+      - ATL_PROXY_PORT=2750
+      # Database
+      - ATL_JDBC_URL=jdbc:postgresql://confluence-cluster-750-db:5432/confluence
+      - ATL_JDBC_USER=confluence
+      - ATL_JDBC_PASSWORD=confluence
+      - ATL_DB_TYPE=postgresql
+      # Data Center configuration
+      - ATL_CLUSTER_TYPE=multicast
+      - ATL_CLUSTER_NAME=confluence-cluster
+      - ATL_CLUSTER_ADDRESS=230.0.0.1
+      - ATL_CLUSTER_TTL=32
+      # Home Directories
+      - CONFLUENCE_HOME=/opt/confluence-home
+      - ATL_PRODUCT_HOME_SHARED=/opt/confluence-home-shared
+    volumes:
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-node3
+        target: /opt/confluence-home
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-shared
+        target: /opt/confluence-home-shared
+    depends_on:
+      - confluence-cluster-750-db
+    networks:
+      confluence-cluster-network-750:
+        aliases:
+          - confluence-cluster-750-node3
+  confluence-cluster-750-node4:
+    image: atlassian/confluence-server:7.5.0-jdk11
+    container_name: confluence-cluster-750-node4
+    links:
+      - confluence-cluster-750-db
+    environment:
+      # Memory / Heap Size
+      - JVM_MINIMUM_MEMORY=512M
+      - JVM_MAXIMUM_MEMORY=2048M
+      # Reverse Proxy Settings
+      - ATL_PROXY_NAME=confluence-cluster-750-lb
+      - ATL_PROXY_PORT=2750
+      # Database
+      - ATL_JDBC_URL=jdbc:postgresql://confluence-cluster-750-db:5432/confluence
+      - ATL_JDBC_USER=confluence
+      - ATL_JDBC_PASSWORD=confluence
+      - ATL_DB_TYPE=postgresql
+      # Data Center configuration
+      - ATL_CLUSTER_TYPE=multicast
+      - ATL_CLUSTER_NAME=confluence-cluster
+      - ATL_CLUSTER_ADDRESS=230.0.0.1
+      - ATL_CLUSTER_TTL=32
+      # Home Directories
+      - CONFLUENCE_HOME=/opt/confluence-home
+      - ATL_PRODUCT_HOME_SHARED=/opt/confluence-home-shared
+    volumes:
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-node4
+        target: /opt/confluence-home
+      - type: bind
+        source: /opt/confluence-cluster/7.5.0/confluence-home-shared
+        target: /opt/confluence-home-shared
+    depends_on:
+      - confluence-cluster-750-db
+    networks:
+      confluence-cluster-network-750:
+        aliases:
+          - confluence-cluster-750-node4
+          
+networks:
+  confluence-cluster-network-750:
+    driver: bridge
