@@ -10,6 +10,7 @@ Please choose the Confluence version you want to run:
 
 | Confluence Version                                                                                            | Loadbalancer URL                       |
 | ------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| **⇨ [7.5.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/versions/7.5.0)** | http://confluence-cluster-750-lb:2750/ |
 | **⇨ [7.4.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/versions/7.4.0)** | http://confluence-cluster-740-lb:2740/ |
 | **⇨ [7.3.1](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/versions/7.3.1)** | http://confluence-cluster-731-lb:2731/ |
 | **⇨ [7.2.0](https://github.com/codeclou/docker-atlassian-confluence-data-center/tree/master/versions/7.2.0)** | http://confluence-cluster-720-lb:2720/ |
