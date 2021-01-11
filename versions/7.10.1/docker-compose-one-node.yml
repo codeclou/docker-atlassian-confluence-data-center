@@ -1,0 +1,70 @@
+version: "3.2"
+services:
+  confluence-cluster-7101-db:
+    image: postgres:10-alpine
+    container_name: confluence-cluster-7101-db
+    environment:
+      - POSTGRES_PASSWORD=confluence
+      - POSTGRES_USER=confluence
+      - POSTGRES_DB=confluence
+    networks:
+      confluence-cluster-network-7101:
+        aliases:
+          - confluence-cluster-7101-db
+  confluence-cluster-7101-lb:
+    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-36c4370
+    container_name: confluence-cluster-7101-lb
+    links:
+      - confluence-cluster-7101-node1
+    ports:
+      - 27101:27101
+    environment:
+      - LB_PORT=27101
+      - NODES=1
+      - NODES_NAME_SCHEMA=confluence-cluster-7101-node___NUM___
+    networks:
+      confluence-cluster-network-7101:
+        aliases:
+          - confluence-cluster-7101-lb
+  confluence-cluster-7101-node1:
+    image: atlassian/confluence-server:7.10.1-jdk11
+    container_name: confluence-cluster-7101-node1
+    links:
+      - confluence-cluster-7101-db
+    environment:
+      # Memory / Heap Size
+      - JVM_MINIMUM_MEMORY=512M
+      - JVM_MAXIMUM_MEMORY=2048M
+      # Reverse Proxy Settings
+      - ATL_PROXY_NAME=confluence-cluster-7101-lb
+      - ATL_PROXY_PORT=27101
+      # Database
+      - ATL_JDBC_URL=jdbc:postgresql://confluence-cluster-7101-db:5432/confluence
+      - ATL_JDBC_USER=confluence
+      - ATL_JDBC_PASSWORD=confluence
+      - ATL_DB_TYPE=postgresql
+      # Data Center configuration
+      - ATL_CLUSTER_TYPE=multicast
+      - ATL_CLUSTER_NAME=confluence-cluster
+      - ATL_CLUSTER_ADDRESS=230.0.0.1
+      - ATL_CLUSTER_TTL=32
+      # Home Directories
+      - CONFLUENCE_HOME=/opt/confluence-home
+      - ATL_PRODUCT_HOME_SHARED=/opt/confluence-home-shared
+    volumes:
+      - type: bind
+        source: /opt/confluence-cluster/7.10.1/confluence-home-node1
+        target: /opt/confluence-home
+      - type: bind
+        source: /opt/confluence-cluster/7.10.1/confluence-home-shared
+        target: /opt/confluence-home-shared
+    depends_on:
+      - confluence-cluster-7101-db
+    networks:
+      confluence-cluster-network-7101:
+        aliases:
+          - confluence-cluster-7101-node1
+
+networks:
+  confluence-cluster-network-7101:
+    driver: bridge
