@@ -61,7 +61,8 @@ Listen 0.0.0.0:{{loadBalancerPort}}
     ProxyPass        "/" "balancer://confluence-cluster/"
     ProxyPassReverse "/" "balancer://confluence-cluster/"
 
-#    ProxyPreserveHost on
-#    ProxyRequests off
-#    ProxyTimeout 9600
+    # custom stuff by codeclou
+    ProxyPreserveHost on
+    ProxyRequests off
+    ProxyTimeout 9600
 </VirtualHost>
