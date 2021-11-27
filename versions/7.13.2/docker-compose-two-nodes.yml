@@ -1,7 +1,7 @@
 version: "3.2"
 services:
   confluence-cluster-7132-db:
-    image: postgres:10-alpine
+    image: postgres:11-alpine
     container_name: confluence-cluster-7132-db
     environment:
       - POSTGRES_PASSWORD=confluence
@@ -12,7 +12,7 @@ services:
         aliases:
           - confluence-cluster-7132-db
   confluence-cluster-7132-lb:
-    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-36c4370
+    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-a3c494d
     container_name: confluence-cluster-7132-lb
     links:
       - confluence-cluster-7132-node1
