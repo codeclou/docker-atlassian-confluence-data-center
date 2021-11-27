@@ -245,7 +245,7 @@ docker-compose -f docker-compose-three-nodes.yml restart confluence-cluster-7132
 To check call this multiple times, and it should output the different node ids after some time
 
 ```
-curl -I -s http://confluence-cluster-7132-lb:27132 | grep ROUTEID
+curl -I -s http://confluence-cluster-7132-lb:27132 | grep X-Confluence-Cluster-Node
 ```
 
 &nbsp;
