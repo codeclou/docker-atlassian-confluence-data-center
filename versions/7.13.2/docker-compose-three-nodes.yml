@@ -12,7 +12,7 @@ services:
         aliases:
           - confluence-cluster-7132-db
   confluence-cluster-7132-lb:
-    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-a3c494d
+    image: codeclou/docker-atlassian-confluence-data-center:loadbalancer-a4e26bf
     container_name: confluence-cluster-7132-lb
     links:
       - confluence-cluster-7132-node1
