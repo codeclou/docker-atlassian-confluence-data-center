@@ -31,7 +31,6 @@ Listen 0.0.0.0:{{loadBalancerPort}}
             BalancerMember http://{{nameSchema}}{{ n }}:8091 route=synnode{{ n }}
         {% endfor %}
 
-        ProxySet            stickysession=JSESSIONID
         Require all granted
     </Proxy>
     # Synchrony WebSocket balancer declaration
@@ -40,7 +39,6 @@ Listen 0.0.0.0:{{loadBalancerPort}}
             BalancerMember ws://{{nameSchema}}{{ n }}:8091 route=synnode{{ n }}
         {% endfor %}
 
-        ProxySet            stickysession=JSESSIONID
         Require all granted
     </Proxy>
     
@@ -57,11 +55,10 @@ Listen 0.0.0.0:{{loadBalancerPort}}
         {% for n in range(1, (amountNodes+1)) %}
             BalancerMember http://{{nameSchema}}{{ n }}:8090 route={{ n }}
         {% endfor %}
-        ProxySet            stickysession=JSESSIONID
     </Proxy>
 
-    # Main Confluence proxy rules
-    ProxyPass        "/" "balancer://confluence-cluster/"
+    # Main Confluence proxy rules (stickysession=ROUTEID added by codeclou)
+    ProxyPass        "/" "balancer://confluence-cluster/" stickysession=ROUTEID
     ProxyPassReverse "/" "balancer://confluence-cluster/"
 
     # custom stuff by codeclou
