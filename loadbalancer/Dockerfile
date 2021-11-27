@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.15
 
 #
 # BASE PACKAGES
@@ -8,7 +8,8 @@ RUN apk add --no-cache \
             apache2 \
             apache2-proxy \
             apache2-utils \
-            python \
+            python3
+RUN apk add --update --no-cache \
             py-pip && \
             pip install --upgrade pip && \
             pip install shinto-cli
@@ -31,7 +32,7 @@ RUN chmod u+rx,g+rx,o+rx,a-w /work-private/docker-entrypoint.sh && \
     touch /var/www/logs/error.log && chown -R worker:worker /var/www/logs/error.log && \
     touch /var/www/logs/access.log && chown -R worker:worker /var/www/logs/access.log && \
     chown -R worker:worker /var/log/apache2 && \
-    mkdir /run/apache2 && chown -R worker:worker /run/apache2 && \
+    chown -R worker:worker /run/apache2  && \
     sed -i -e 's/Listen 80/#Listen 80\nServerName localhost/g' /etc/apache2/httpd.conf && \
     sed -i -e 's/AllowOverride\s*None/AllowOverride All/ig' /etc/apache2/httpd.conf && \
     echo "Include /work-private/loadbalancer-virtual-host.conf" >> /etc/apache2/httpd.conf

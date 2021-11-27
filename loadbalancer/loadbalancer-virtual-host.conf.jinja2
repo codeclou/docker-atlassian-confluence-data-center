@@ -17,38 +17,51 @@ Listen 0.0.0.0:{{loadBalancerPort}}
     </Directory>
     # END - ErrorDocuments
 
-    <Proxy *>
+    <Location /balancer-manager>
+        SetHandler balancer-manager
         Require all granted
-    </Proxy>
-    Header add Set-Cookie  "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/"  env=BALANCER_ROUTE_CHANGED
-
-    <Proxy balancer://confluence-synchrony-cluster>
-        {% for n in range(1, (amountNodes+1)) %}
-            BalancerMember http://{{nameSchema}}{{ n }}:8091 route={{ n }}
-        {% endfor %}
-    </Proxy>
-    <Proxy balancer://confluence-synchrony-cluster-ws>
-        {% for n in range(1, (amountNodes+1)) %}
-            BalancerMember ws://{{nameSchema}}{{ n }}:8091 route={{ n }}
-        {% endfor %}
-    </Proxy>
-    ProxyPass /synchrony   balancer://confluence-synchrony-cluster/synchrony  stickysession=ROUTEID
-    <Location /synchrony>
-        Require all granted
-        RewriteEngine on
-        RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
-        RewriteCond %{HTTP:CONNECTION} Upgrade$ [NC]
-        RewriteRule .* balancer://confluence-synchrony-cluster-ws%{REQUEST_URI} [P]
     </Location>
 
-    <Proxy balancer://confluence-cluster>
+    # Main Synchrony proxy rule
+    ProxyPass /synchrony  balancer://synchrony-http/synchron
+
+    # Synchrony HTTP balancer declaration
+    <Proxy balancer://synchrony-http>
+        {% for n in range(1, (amountNodes+1)) %}
+            BalancerMember http://{{nameSchema}}{{ n }}:8091 route=synnode{{ n }}
+        {% endfor %}
+
+        Require all granted
+    </Proxy>
+    # Synchrony WebSocket balancer declaration
+    <Proxy balancer://synchrony-ws>
+        {% for n in range(1, (amountNodes+1)) %}
+            BalancerMember ws://{{nameSchema}}{{ n }}:8091 route=synnode{{ n }}
+        {% endfor %}
+
+        Require all granted
+    </Proxy>
+    
+    # WebSocket rewrite condition and rules
+    RewriteEngine     On
+    RewriteCond       %{REQUEST_URI}       ^/synchrony/(.*)/bayeux-sync1   [NC]
+    RewriteRule       /(.*)                balancer://synchrony-ws/$1      [P,L]
+
+
+
+    # Main Confluence balancer
+    Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+    <Proxy "balancer://confluence-cluster">
         {% for n in range(1, (amountNodes+1)) %}
             BalancerMember http://{{nameSchema}}{{ n }}:8090 route={{ n }}
         {% endfor %}
     </Proxy>
-    ProxyPass /            balancer://confluence-cluster/                     stickysession=ROUTEID
 
-    ProxyPreserveHost on
-    ProxyRequests off
-    ProxyTimeout 9600
+    # Main Confluence proxy rules
+    ProxyPass        "/" "balancer://confluence-cluster/"
+    ProxyPassReverse "/" "balancer://confluence-cluster/"
+
+#    ProxyPreserveHost on
+#    ProxyRequests off
+#    ProxyTimeout 9600
 </VirtualHost>
