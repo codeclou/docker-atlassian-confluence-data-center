@@ -33,8 +33,9 @@ services:
       - confluence-cluster-7132-db
     environment:
       # Memory / Heap Size
-      - JVM_MINIMUM_MEMORY=512M
+      - JVM_MINIMUM_MEMORY=1024M
       - JVM_MAXIMUM_MEMORY=2048M
+      - JVM_RESERVED_CODE_CACHE_SIZE=512M
       # Reverse Proxy Settings
       - ATL_PROXY_NAME=confluence-cluster-7132-lb
       - ATL_PROXY_PORT=27132
